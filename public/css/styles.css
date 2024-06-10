@@ -1,0 +1,161 @@
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}/* Mobile First Styles */
+body{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-image: url('/images/site/small_check.jpg'); 
+  background-repeat: no-repeat; /* Prevent image repetition */
+}
+nav{
+  background-color: #333;
+  color: #fff;  
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+
+
+}
+
+.home-link h1 {
+  margin: 0;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+ 
+}
+
+.navbar-links li {
+  margin: 0 1rem;
+}
+
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Larger Screen Styles */
+@media (min-width: 768px) {
+  .navbar-links li {
+      margin: 0 2rem;
+  }
+}
+
+.wrapper{
+
+  background-color: white;
+  padding: 10px;
+  margin: 55px;
+  margin-top: 30px;
+ 
+}
+
+
+.delorean{
+  
+  padding-left: 80px;
+  padding-bottom: 150px;
+  background-image: url('/images/vehicles/delorean.jpg');
+  background-repeat: no-repeat; /* Prevent image repetition */
+
+}
+.delorean h3 p{
+  background-color: #0007; /* 50% transparent black */
+
+  padding: 20px;
+}
+a{
+  color: black;
+}
+.delorean a{
+  padding: 10px;
+  background-color: rgb(45, 215, 221);
+  border-radius: 10px; 
+}
+.account a {
+  
+  text-decoration: none;/* Mobile First Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-image: url('/images/site/small_check.jpg');
+  background-repeat: no-repeat; /* Prevent image repetition */
+}
+
+.wrapper {
+  background-color: white;
+  padding-left: 10px;  
+  margin: 55px;
+  margin-top: 30px;
+  
+}
+
+.account a {
+  color: red;
+  text-decoration: none;
+}
+
+
+}
+
+header{
+  position: absolute;  
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.upgrades, .reviews {
+  padding: 1rem;
+  text-align: center;
+}
+
+.upgrades h3, .reviews h3 {
+  margin-top: 0;
+}
+
+.upgrade-item {
+  display: inline-block;
+  width: 100px;
+  margin: 2%;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+}
+
+.upgrade-item img {
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+
+.column {
+  overflow: hidden;
+}
+
+.half {
+  width: 50%;
+  float: left;
+}
+
+footer{
+  background-color: #333;
+  color: #fff;  
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+}
