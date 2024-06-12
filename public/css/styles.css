@@ -54,7 +54,6 @@ nav{
       margin: 0 2rem;
   }
 }
-
 .wrapper{
   background-color: white;
   margin-top: -90px;
@@ -65,7 +64,6 @@ nav{
   border: 5px solid rgb(9, 216, 231);
   border-radius: 10px;
 }
-
 .delorean{
   background-image: url('/images/vehicles/delorean.jpg');
   background-repeat: no-repeat; /* Prevent image repetition */
