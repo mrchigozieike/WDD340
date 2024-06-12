@@ -48,6 +48,12 @@ nav{
   color: #fff;
   text-decoration: none;
 }
+.nav a:hover{
+  background-color: rgba(255,255,255,0.2);   
+}
+.nav .active{
+  background-color: rgb(0, 0, 0, 0.2 );
+}
 
 /* Larger Screen Styles */
 @media (min-width: 768px) {
@@ -173,4 +179,14 @@ footer{
   margin-left: 7%;
   margin-top: -100px;
   border-radius: 10px;
+}
+
+
+
+/* For screens with a minimum width of 400px: */
+@media only screen and (min-width: 400px) {
+  
+  body {
+      background-color: lavender;
+  }
 }
