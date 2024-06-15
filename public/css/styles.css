@@ -155,16 +155,19 @@ header {
 .reviews h3 {
   margin-top: 0;
 }
-h2{
+
+h2 {
   font-family: "DM Serif Display", serif;
   font-weight: 400;
   font-style: normal;
 }
-h3{
-    font-family: "DM Serif Display", serif;
-    font-weight: 400;
-    font-style: italic;
+
+h3 {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: italic;
 }
+
 .upgrade-item {
   display: inline-block;
   width: 100px;
@@ -207,18 +210,71 @@ footer {
 
 
 
-/* For screens with a minimum width of 400px: */
-@media only screen and (min-width: 400px) {
-
-  body {
-    background-color: lavender;
-  }
-}
-
-
-
 #MainContent {
   background-image: url('image-url');
   background-size: cover;
   background-position: center;
+}
+
+
+
+/* Mobile View ***************/
+#menu {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: .5rem .75rem;
+  color: rgb(0, 0, 0, 0.3);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+form {
+  padding-left: 100px;
+
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+#menu::before {
+  content: "≡";
+}
+
+
+.nav li {
+  display: none;
+}
+
+.show li {
+  display: block;
+}
+
+#menu.show::before {
+  content: "❌";
+}
+
+/* Media Query for wider than mobile viewports. Breakpoint should be based upon the design and content and use em units to be relative to the user's font size versus fixed with pixels.*/
+@media only screen and (min-width: 40em) {
+  .nav {
+    display: flex;
+  }
+
+  .nav li {
+    display: block;
+    /* change state in small view */
+    flex: 1 1 100%;
+  }
+
+  .nav a {
+    text-align: center;
+  }
+
+  #menu {
+    display: none;
+  }
 }
