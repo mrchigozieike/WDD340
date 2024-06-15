@@ -131,11 +131,6 @@ nav {
     border: 5px solid rgb(9, 216, 231);
   }
 
-  .account a {
-    color: red;
-    text-decoration: none;
-    border-color: aqua;
-  }
 
 
 }
@@ -218,4 +213,12 @@ footer {
   body {
     background-color: lavender;
   }
+}
+
+
+
+#MainContent {
+  background-image: url('image-url');
+  background-size: cover;
+  background-position: center;
 }
