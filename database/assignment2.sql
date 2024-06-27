@@ -57,19 +57,29 @@ WHERE account_email = 'tony@starkent.com';
 DELETE FROM public.account
 WHERE account_email = 'tony@starkent.com';
 
--- Insert a new classification and get the new classification_id
-INSERT INTO public.classification (classification_name)
-VALUES ('Sport')
-RETURNING classification_id;
 
--- Insert a record for GM Hummer with the valid classification_id
-INSERT INTO public.inventry (
-    inv_make, inv_model, inv_year, inv_description, inv_image, 
-    inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
-)
-VALUES (
-    'GM', 'Hummer', '2024', 'small interiors', '/images/gm_hummer.jpg', 
-    '/images/gm_hummer_thumbnail.jpg', 60000, 5000, 'Black', (
-        SELECT classification_id FROM public.classification WHERE classification_name = 'Sport'
-    )
-);
+
+-- Insert data into classification table
+INSERT INTO public.classification (classification_name) VALUES ('Sport'), ('SUV'), ('Truck'), ('Sedan');
+
+-- Insert data into inventory table
+INSERT INTO public.inventry (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+VALUES 
+('GM', 'Hummer', '2024', 'a huge interior', '/images/vehicles/gm_hummer.jpg', '/images/vehicles/gm_hummer_thumbnail.jpg', 60000, 5000, 'Black', (SELECT classification_id FROM public.classification WHERE classification_name = 'Sport'));
+
+-- Task 4 query
+UPDATE public.inventry
+SET inv_description = REPLACE(inv_description, 'small interiors', 'a huge interior')
+WHERE inv_make = 'GM' AND inv_model = 'Hummer';
+
+--Task 5 query
+SELECT i.inv_make, i.inv_model, c.classification_name
+FROM public.inventry i
+INNER JOIN public.classification c ON i.classification_id = c.classification_id
+WHERE c.classification_name = 'Sport';
+
+
+-- Task 6: Update all records in the inventory table to add "/vehicles" to the middle of the file path in inv_image and inv_thumbnail columns
+UPDATE public.inventry
+SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
