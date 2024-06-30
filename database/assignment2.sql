@@ -60,7 +60,11 @@ WHERE account_email = 'tony@starkent.com';
 
 
 -- Insert data into classification table
-INSERT INTO public.classification (classification_name) VALUES ('Sport'), ('SUV'), ('Truck'), ('Sedan');
+INSERT INTO public.classification (classification_name) VALUES 
+('Sport'), 
+('SUV'), 
+('Truck'), 
+('Sedan');
 
 -- Insert data into inventory table
 INSERT INTO public.inventry (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)

@@ -16,48 +16,48 @@ body {
   background-repeat: no-repeat;
   /* Prevent image repetition */
 }
+.home-link h1 {
+  margin: 0;
+}
 
 nav {
   margin-top: 15px;
   background-color: #333;
   color: #fff;
   padding: 1rem;
-  display: grid;
-  place-items: center;
   position: relative;
   top: 30px;
   width: 86%;
   margin-left: 7%;
   border-radius: 5px;
+  
 }
 
-.home-link h1 {
-  margin: 0;
+nav ul {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space items evenly */
+  list-style-type: none; /* Remove default list styling */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  background-color: #333; /* Background color for the navigation bar */
+  overflow: hidden; /* Ensure content fits within the navigation bar */
 }
 
-.navbar-links {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
 
-
-}
-
-.navbar-links li {
+nav li {
   margin: 0 1rem;
 }
 
-.navbar-links li a {
+nav li a {
   color: #fff;
   text-decoration: none;
 }
 
-.nav a:hover {
+nav a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.nav .active {
+nav .active {
   background-color: rgb(0, 0, 0, 0.2);
 }
 
@@ -221,7 +221,7 @@ fieldset {
 }
 
 
-.nav li {
+nav li {
   display: none;
 }
 
@@ -235,17 +235,17 @@ fieldset {
 
 /* Media Query for wider than mobile viewports. Breakpoint should be based upon the design and content and use em units to be relative to the user's font size versus fixed with pixels.*/
 @media only screen and (min-width: 40em) {
-  .nav {
+  nav {
     display: flex;
   }
 
-  .nav li {
+  nav li {
     display: block;
     /* change state in small view */
     flex: 1 1 100%;
   }
 
-  .nav a {
+  nav a {
     text-align: center;
   }
 
