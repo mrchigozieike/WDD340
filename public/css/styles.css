@@ -21,7 +21,7 @@ body {
 }
 
 nav {
-  margin-top: 15px;
+
   background-color: #333;
   color: #fff;
   padding: 1rem;
@@ -179,7 +179,7 @@ footer {
   top: 30px;
   width: 86%;
   margin-left: 7%;
-  margin-top: -100px;
+  
   border-radius: 10px;
 }
 

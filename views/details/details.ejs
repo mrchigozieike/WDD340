@@ -1,0 +1,24 @@
+const express = require("express");
+const router = new express.Router();
+const invModel = require("../models/inventory-model"); // Assuming inventory model
+
+// Route to display details of a specific inventory item
+router.get("/inv/detail/:inv_id", async function (req, res) {
+  const invId = req.params.inv_id; // Get inventory ID from URL parameter
+
+  try {
+    const details = await invModel.getInventoryDetails(invId); // Fetch details using model
+
+    if (details) {
+      // Render template with details
+      res.render("inv-detail", { details }); // Assuming "inv-detail" template
+    } else {
+      res.status(404).send("Inventory item not found"); // Handle non-existent item
+    }
+  } catch (error) {
+    console.error("Error fetching inventory details:", error);
+    res.status(500).send("Internal server error"); // Handle unexpected errors
+  }
+});
+
+module.exports = router;
