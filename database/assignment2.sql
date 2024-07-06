@@ -111,7 +111,9 @@ WHERE account_email = 'tony@starkent.com';
 
 
 -- Insert data into classification table
-INSERT INTO public.classification (classification_name) VALUES ('custom'),
+INSERT INTO public.classification (classification_name) 
+VALUES 
+('custom'),
 ('Sport'), 
 ('SUV'), 
 ('Truck'), 

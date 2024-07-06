@@ -24,6 +24,7 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
@@ -66,6 +67,36 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+/* ************************
+ * Build HTML for vehicle detail view
+ ************************** */
+
+// Function to build HTML view for a single inventory item detail
+Util.buildInventoryDetailView = function(vehicle) {
+  let view = '';
+  
+  if (vehicle.length > 0) {
+    view = '<ul = "veh-display">'
+    vehicle.forEach(vehicle =>{
+    view += '<div class="vehicle-detail">';
+    view += `<h1> ${vehicle.inv_year } ${vehicle.inv_make} ${vehicle.inv_model}</h1>`;
+    view += '<div class="vehicle-detail-content">';
+    view += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" class="vehicle-image">`;
+    view += '<div class="vehicle-info">';
+    view += `<p><strong>Price:${vehicle.inv_price}</strong> </p>`;
+    view += `<p><strong>Mileage:</strong> ${vehicle.inv_miles} miles</p>`;
+    view += `<p><strong>Year:</strong> ${vehicle.inv_year}</p>`;
+    view += `<p><strong>Color:</strong> ${vehicle.inv_color}</p>`;
+    view += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>`;
+    view += '</div>'; // close vehicle-info
+    view += '</div>'; // close vehicle-detail-content
+    view += '</div>'; // close vehicle-detail
+  })
+
+  }
+
+  return view;
+};
 
 
-module.exports = Util
+module.exports = Util;
