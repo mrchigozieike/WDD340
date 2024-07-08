@@ -16,34 +16,34 @@ body {
   background-repeat: no-repeat;
   /* Prevent image repetition */
 }
+
 .home-link h1 {
   margin: 0;
 }
 
 nav {
-
+  display: flex;
+  flex-direction: row;
   background-color: #333;
   color: #fff;
-  padding: 1rem;
-  position: relative;
-  top: 30px;
-  width: 86%;
-  margin-left: 7%;
+  width: 99%;
   border-radius: 5px;
-  
+  margin-top: 30px;
 }
-ul{
-  list-style-type: none; /* Remove default list styling */
+
+ul {
+  list-style-type: none;
+  /* Remove default list styling */
 }
 
 nav ul {
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Space items evenly */
-  
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  background-color: #333; /* Background color for the navigation bar */
-  overflow: hidden; /* Ensure content fits within the navigation bar */
+  display: flex;
+  /* Use flexbox for layout */
+  justify-content: space-between;
+  /* Space items evenly */
+  background-color: #333;
+  /* Background color for the navigation bar */
+  width: 100%;
 }
 
 
@@ -73,31 +73,27 @@ nav .active {
 
 .wrapper {
   background-color: white;
-  margin-top: -90px;
-  padding: 100px;
+  padding-left: 10px;
+  margin-top: 30px;
   margin-left: 55px;
   margin-right: 55px;
-  margin-bottom: 10px;
   border: 5px solid rgb(9, 216, 231);
   border-radius: 10px;
 }
-
-.delorean {
-  background-image: url('/images/vehicles/delorean.jpg');
-  background-repeat: no-repeat;
-  /* Prevent image repetition */
-  padding-bottom: 320px;
-  margin-left: 110px;
+.deloran{
+  width: 100%;
 }
 
-.advert {
-  margin-left: 50px;
-  padding-left: 80px;
+
+.advert { 
+  
   background-color: rgba(228, 235, 235, 0.849);
   padding: 20px;
   color: rgb(8, 114, 114);
   width: 140px;
-  float: left;
+  position: absolute;
+  /* Adjust top, right, bottom, left as needed */
+  z-index: 1; /* Control layering */
 }
 
 .advert a {
@@ -109,6 +105,7 @@ nav .active {
   font-family: "DM Serif Display", serif;
   font-weight: 400;
   font-style: normal;
+  
 
 }
 
@@ -122,6 +119,10 @@ header {
   justify-content: space-between;
 }
 
+.intro {
+  display: grid;
+  place-items: center;
+}
 
 .upgrades,
 .reviews {
@@ -163,14 +164,13 @@ h3 {
 }
 
 
-.column {
-  overflow: hidden;
+.upgrades {
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Two equal-width sub-columns */
 }
 
-.half {
-  width: 50%;
-  float: left;
-}
 
 footer {
   background-color: #333;
@@ -181,7 +181,7 @@ footer {
   position: relative;
   top: 30px;
   width: 86%;
-  margin-left: 7%;  
+  margin-left: 7%;
   border-radius: 10px;
 }
 
@@ -192,6 +192,77 @@ footer {
   background-size: cover;
   background-position: center;
 }
+
+
+#inv-disp{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+
+/* styles.css */
+.veh-display {
+  /* Add styles for the entire vehicle display container */
+  /* For example: */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Two equal-width sub-columns */
+
+}
+
+.vehicle-detail-left {
+  display: grid;
+
+}
+
+.vehicle-name {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Two equal-width sub-columns */
+}
+
+.vehicle-mp {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Two equal-width sub-columns */
+}
+
+.vehicle-detail {
+  /* Add styles for each vehicle detail section */
+  /* For example: */
+  border: 1px solid #ddd;
+
+}
+
+.vehicle-image {
+  /* Add styles for the vehicle image */
+  /* For example: */
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.vehicle-info {
+  /* Add styles for the vehicle information section */
+  /* For example: */
+  font-size: 16px;
+  color: #333;
+}
+
+
+.vehicle-buttons {
+  display: block;
+  background-color: #333;
+  color: white;
+}
+
+.button:hover {
+  background-color: green;
+}
+
+
+
 
 
 
