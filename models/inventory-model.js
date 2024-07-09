@@ -17,6 +17,7 @@ async function getInventoryByClassificationId(classification_id) {
       JOIN public.classification AS c 
       ON i.classification_id = c.classification_id 
       WHERE i.classification_id = $1`,
+    
       [classification_id]
     )
     return data.rows

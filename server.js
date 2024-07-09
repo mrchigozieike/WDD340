@@ -56,13 +56,18 @@ app.use(session({
 /* ***********************
  * Routes
  *************************/
-app.use(static); // Static routes
+app.use(require("./routes/static")); // Static routes
 
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome));
 
 // Inventory routes
-app.use("/inv", inventoryRoute);
+app.use("/inv", require("./routes/inventoryRoute"));
+
+//Account routes
+app.use("/account", require("./routes/accountRoute"))
+
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

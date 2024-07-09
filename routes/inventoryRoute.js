@@ -7,7 +7,6 @@ router.get('/', utilities.handleErrors(invController.getInventory));
 router.get('/type/:classificationId', utilities.handleErrors(invController.buildByClassificationId));
 router.get('/detail/:inventoryId', utilities.handleErrors(invController.buildByInventoryId));
 
-// Additional routes...
 
 
 module.exports = router;
