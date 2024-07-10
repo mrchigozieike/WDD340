@@ -18,8 +18,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   });
 };
-
-
 invCont.buildByInventoryId = async function (req, res, next) {
   const inventory_id = req.params.inventoryId; // Assuming inventoryId is passed as a route parameter
   try {
@@ -29,7 +27,6 @@ invCont.buildByInventoryId = async function (req, res, next) {
       // Handle case where inventory item is not found
       return res.status(404).send("Inventory item not found.");
     }
-
     // Example function to build a detailed view for an inventory item
     const detailedView = utilities.buildInventoryDetailView(inventoryItem);
 
@@ -48,6 +45,13 @@ invCont.buildByInventoryId = async function (req, res, next) {
   }
 };
 
+invCont.buildManagement = async function (req, res, next) {
 
-
+    let nav = await utilities.getNav()
+    res.render("inventory/management", {
+      title: "Management",
+      nav,
+      errors: null,
+    })
+  }
 module.exports = invCont;

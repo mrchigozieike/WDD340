@@ -8,5 +8,6 @@ router.get('/type/:classificationId', utilities.handleErrors(invController.build
 router.get('/detail/:inventoryId', utilities.handleErrors(invController.buildByInventoryId));
 
 
+router.get("/management", utilities.handleErrors(invController.buildManagement));
 
 module.exports = router;
