@@ -2,6 +2,7 @@ const utilities = require('../utilities')
 /* ****************************************
 *  Deliver login view
 * *************************************** */
+
 async function buildLogin(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/login", {
@@ -10,7 +11,17 @@ async function buildLogin(req, res, next) {
   })
 }
 
-module.exports = { buildLogin }
+/* ****************************************
+*  Deliver registration view
+* *************************************** */
+async function buildRegister(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/register", {
+    title: "Register",
+    nav,
+  })
+}
+
 /* ****************************************
 *  Process Registration
 * *************************************** */
@@ -43,4 +54,5 @@ async function registerAccount(req, res) {
   }
 }
 
-module.exports = { buildLogin, registerAccount }
+
+module.exports = { buildLogin, buildRegister, registerAccount }
