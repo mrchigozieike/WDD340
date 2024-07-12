@@ -1,8 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const errorController = require('../controllers/errorController');
-const utilities = require('../utilities/');
+const errorController = {};
 
-router.get('/trigger-error', utilities.handleErrors(errorController.triggerError));
+// Controller function for an intentional error
+errorController.startError = (req, res, next) => {
+    try {
+        nonExistentFunction();
+    } catch (error) {
+        next(error);
+    }
+};
 
-module.exports = router;
+module.exports = errorController;

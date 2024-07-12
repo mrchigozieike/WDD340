@@ -43,6 +43,7 @@ Util.buildClassificationGrid = async function (data) {
   if (data.length > 0) {
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => {
+      grid += '<div class="divine">'
       grid += '<li>'
       grid += '<a href="../../inv/detail/' + vehicle.inv_id       
         + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
@@ -51,15 +52,16 @@ Util.buildClassificationGrid = async function (data) {
         + ' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
       grid += '<hr />'
-      grid += '<h2>'
+      grid += '<h3>'
       grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View '
         + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
         + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
+      grid += '</h3>'
       grid += '<span>$'
         + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
       grid += '</div>'
       grid += '</li>'
+      grid += '</div>'
     })
     grid += '</ul>'
   } else {
@@ -84,30 +86,35 @@ Util.buildInventoryDetailView = function (vehicle) {
       view += '<div class="vehicle-detail-left">';
       view += `<h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>`;
       view += '<div class="vehicle-pm">';
-      view += `<h2><strong>No Haggle-Price<sup>1</sup>:&nbsp; &nbsp; $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</strong></h2>`;
-      view += `<p><strong>Mileage</strong></p>`;
+      view += `<h2>No Haggle-Price<sup>1</sup>:&nbsp; &nbsp; $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</h2>`;
+      
       view += '<div class="vehicle-mp">';
-      view += `<p><strong>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</strong></p>`;
-      view += `<p>ESTIMATE PAYMENTS</p>`;
+      view += `<h5>MILAGE</h5>`;
+      view += `<p>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}<strong>miles</strong></p>`;
+      
       view += '</div>'; // close vehicle-mp
+      view += `<p class="estimate">ESTIMATE PAYMENTS</p>`;
       view += '</div>'; // close vehicle-pm
       view += '<div class="vehicle-name">';
       view += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>`;
       view += '<div class="vehicle-info">';
       // Add a new section for buttons
-      view += '<div class=vehicle-buttons">';
-      view += '<button class="button">START MY PURCHASE</button>';
-      view += '<button class="button">CONTACT US NOW</button>';
-      view += '<button class="button">SCHEDULE TEST DRIVE</button>';
-      view += '<button class="button">APPLY FOR FINANCING</button>';
+      view += '<div class="vehicle-buttons">';
+      view += '<button class="vehicle-buttons">START MY PURCHASE</button>';
+      view += '<button class="vehicle-buttons">CONTACT US NOW</button>';
+      view += '<button class="vehicle-buttons">SCHEDULE TEST DRIVE</button>';
+      view += '<button class="vehicle-buttons">APPLY FOR FINANCING</button>';
       view += '</div>'; // close vehicle-buttons
       view += '</div>'; // close vehicle-info
+      
       view += '<div class="vehicle-info">';
       view += `<p><strong>Year:</strong> ${vehicle.inv_year}</p>`;
       view += `<p><strong>Color:</strong> ${vehicle.inv_color}</p>`;
-      view += '</div>'; // close vehicle-info
-      view += '</div>'; // close vehicle-info
-
+      view += '</div>'; // close vehicle-info      
+      view += '</div>'; // close vehicle-
+      view += `<p class="estimate"><strong>Call Us:<strong></p>`;
+      view += `<p class="estimate"><strong>+2348063365400<strong></p>`;
+      
 
     });
 

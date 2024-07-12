@@ -138,16 +138,13 @@ header {
 }
 
 h2 {
+  padding-left: 100px;
   font-family: "DM Serif Display", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-h3 {
-  font-family: "DM Serif Display", serif;
-  font-weight: 400;
-  font-style: italic;
-}
+
 
 .upgrade-item {
   display: inline-block;
@@ -205,29 +202,19 @@ footer {
 
 }
 
-.vehicle-detail-left {
-  display: grid;
-
-}
-
 .vehicle-name {
+  margin-right: 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   /* Two equal-width sub-columns */
 }
 
 .vehicle-mp {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: grid;  
   /* Two equal-width sub-columns */
 }
 
-.vehicle-detail {
-  /* Add styles for each vehicle detail section */
-  /* For example: */
-  border: 1px solid #ddd;
 
-}
 
 .vehicle-image {
   /* Add styles for the vehicle image */
@@ -242,24 +229,48 @@ footer {
   /* For example: */
   font-size: 16px;
   color: #333;
+
 }
 
 
 .vehicle-buttons {
+
   display: block;
-  background-color: #333;
+  background-color: rgba(0, 17, 17, 0.164);
   color: white;
+  width: 100px;
 }
 
-.button:hover {
+.vehicle-buttons :hover {
   background-color: green;
 }
+.vehicle-mp{
+  padding-left: 10px;
+  background-color: rgba(0, 17, 17, 0.164);
+  width: 110px;
+}
+h5{
+  background-color: #ffffff;
+  width: 60px;
+}
+.estimate{
+  margin-top: -50px;
+  padding-left: 220px;
+  color: green;
+}
+.divine{
+  margin: 200px;
+  display: inline-block;
+  width: 250px;
+  margin: 2%;
+  padding: 1rem;
+  color: #a80808;
+  border-radius: 5px; 
+}
 
-
-
-
-
-
+.vehicle-detail{
+  margin: 50px;
+}
 /* Mobile View ***************/
 #menu {
   display: block;

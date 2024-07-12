@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
 <!--This will show three distint sections:
  A Content heading, 
  a message and the Inventory Items Display. -->
@@ -8,11 +11,11 @@
     </h1>
     <% } else { res.redirect('/') } %>
 
-        <%# messages() %>
+
 
         <form id="management_form" action="/inv/add-classification" method="post">
             <fieldset>
-                <legend></legend>
+               
                 <p>Field is required</p>
                 <label class="management-label">Classification Name<input type="text" name="classification_name"
                         id="classificationName" required pattern="[a-zA-Z]+"
@@ -21,3 +24,5 @@
                 <button type="submit">Add New Classification</button>
             </fieldset>
         </form>
+
+</html>

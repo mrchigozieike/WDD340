@@ -1,0 +1,19 @@
+const express = require('express');
+const router = express.Router();
+const utilities = require('../utilities/');
+
+router.get('/', utilities.handleErrors(buildLogin));
+
+
+/* ****************************************
+ * Deliver login view
+ * *************************************** */
+async function buildError(req, res, next) {
+  let nav = await utilities.getNav(); // Assuming you have a function to get navigation data
+  res.render('errors/error', {
+    title: "Something Wen't wrong Please try again Next time",
+    nav,
+  });
+}
+
+module.exports = buildError;
