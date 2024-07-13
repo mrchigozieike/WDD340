@@ -9,9 +9,10 @@
 
   <div class="form-container">
     <%- messages() %>
-      <p><b>All Fields are required.</b></p>
+      
       <form action="/account/register" method="post">
         <fieldset>
+          <p class="required-fields">All Fields are required.</p>
           <div class="form-group">
             <label for="account_firstname">First Name:</label>
             <input type="text" name="account_firstname" id="account_firstname" required

@@ -1,3 +1,5 @@
+const pool = require("../database/")
+
 const express = require('express');
 const router = express.Router();
 const utilities = require('../utilities/');
@@ -15,6 +17,7 @@ async function buildLogin(req, res, next) {
     nav,
   });
 }
+
 /* *****************************
 *   Register new account
 * *************************** */
@@ -26,7 +29,6 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     return error.message
   }
 }
-
 
 /* **********************
  *   Check for existing email
@@ -40,8 +42,8 @@ async function checkExistingEmail(account_email) {
     return error.message
   }
 }
-module.exports = router;
-const pool = require("../database/")
+
+
 
 
 /* ***************************
@@ -64,4 +66,5 @@ async function getInventoryByClassificationId(classification_id) {
 }
 
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryById };
+module.exports = { registerAccount, checkExistingEmail, getInventoryByClassificationId }
+module.exports = router;

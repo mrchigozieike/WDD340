@@ -179,12 +179,21 @@ footer {
   place-items: center;
   position: relative;
   top: 30px;
-  width: 86%;
-  margin-left: 7%;
+  width: 99%;
+  
   border-radius: 10px;
 }
+form{
+  width: 90%;
+}
+form-group{
+  background-color:rgba(0, 17, 17, 0.164);
+  margin-top: 20px;
+}
 
-
+.account-reg{
+  padding-left: 100px;
+}
 
 #MainContent {
   background-image: url('image-url');
@@ -232,15 +241,9 @@ footer {
 
 }
 
-
 .vehicle-buttons {
-
-  display: block;
-  background-color: rgba(0, 17, 17, 0.164);
-  color: white;
   width: 100px;
 }
-
 .vehicle-buttons :hover {
   background-color: green;
 }
@@ -271,6 +274,10 @@ h5{
 .vehicle-detail{
   margin: 50px;
 }
+
+.management-label{
+  padding-top: 10px;
+}
 /* Mobile View ***************/
 #menu {
   display: block;
@@ -288,7 +295,16 @@ form {
   padding-left: 100px;
 
 }
-
+.form-button{
+  margin-left: 120px;
+}
+.form-group{
+  margin: 6px;
+ 
+}
+.required-fields{
+  padding-left: 100px;
+}
 fieldset {
   display: flex;
   flex-direction: column;
