@@ -2,29 +2,28 @@
 <html lang="en">
 <%- include('../partials/head') %>
   <div class="container">
-  <!--This will show three distint sections:
+    <!--This will show three distint sections:
  A Content heading, 
  a message and the Inventory Items Display. -->
-
-  <h2>
-    <%= title %>
-  </h2>
-
-  <form class="register_form" action="/inv/add-inventory" method="post" id="vehicleForm">
-    <fieldset>
-    <label>Make<input type="text" name="inv_make" value="<%- inv_make %>" required></label>
-    <label>Model<input type="text" name="inv_model" value="<%- inv_model %>" required></label>
-    <label>Description<textarea type="text" name="inv_description" required><%- inv_description %></textarea></label>
-    <label>Image Path<input type="text" name="inv_image" value="/images/vehicles/no-image.png" required></label>
-    <label>Thumbnail Path<input type="text" name="inv_thumbnail" value="/images/vehicles/no-image.png" required></label>
-    <label>Price<input type="number" pattern="^[0-9]*\.?[0-9]+$" name="inv_price" placeholder="decimal or integer"
-        value="<%- inv_price %>" required></label>
-    <label>Year<input type="number" pattern="^\d{4}$" name="inv_year" placeholder="4-digit year" value="<%- inv_year %>"
-        required></label>
-    <label>Miles<input type="number" pattern="^\d+$" name="inv_miles" placeholder="digits only" value="<%- inv_miles %>"
-        required></label>
-    <label>Color<input type="text" name="inv_color" value="<%- inv_color %>" required></label>
-    <button type="submit">Add Vehicle</button>
-  </fieldset>
-  </form>
-</div>
+    <% if (title) { %>
+      <h2>
+        <%= title %>
+      </h2>
+      <% } else { res.redirect('/') } %>
+        <form id="vehicleForm" action="/inv/add-inventory" method="post">
+          <fieldset>
+            <p>Field is required</p>
+                   
+            <label class="management-label">Make<input type="text" name="inv_make" id="invMake" required pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_make %>"></label>
+            <label class="management-label">Model<input type="text" name="inv_model" id="invModel" required pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_model %>"></label>
+            <label class="management-label">Description<textarea name="inv_description" id="invDescription" rows="8" cols="50" required minlength="30" maxlength="100"><%= locals.inv_description %></textarea></label>            
+            <label class="management-label">Image Path<input type="text" name="inv_image" id="invImage"  required pattern="[a-zA-Z0-9/_.-]+" value="<%= locals.inv_image || '/images/vehicles/no-image.png' %>"></label>
+            <label class="management-label">Thumbnail Path<input type="text" name="inv_thumbnail" id="invThumbnail" required pattern="[a-zA-Z0-9/_.-]+" value="<%= locals.inv_thumbnail || '/images/vehicles/no-image.png' %>"></label>
+            <label class="management-label">Price<input type="text" name="inv_price" id="invPrice" required pattern="^\d+(\.\d{1,2})?$" value="<%= locals.inv_price %>"></label>
+            <label class="management-label">Year<input type="text" name="inv_year" id="invYear" required  pattern="\d{4}" minlength="4" maxlength="4" value="<%= locals.inv_year %>"></label>
+            <label class="management-label">Miles<input type="text" name="inv_miles" id="invMiles" required pattern="[0-9]+" value="<%= locals.inv_miles %>"></label>
+            <label class="management-label">Color<input type="text" name="inv_color" id="invColor" required pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_color %>"></label>
+            <button type="submit">Add Vehicle</button>    
+          </fieldset>
+        </form>
+  </div>

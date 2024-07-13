@@ -16,7 +16,7 @@ const baseController = require("./controllers/baseController");
 const inventoryRoute = require('./routes/inventoryRoute');
 
 const bodyParser = require("body-parser")
-
+const cookieParser = require("cookie-parser")
 
 const pool = require("./database");
 const utilities = require("./utilities/");
@@ -43,6 +43,7 @@ app.use(express.static('public'));
 // Express Messages Middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
 
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
@@ -65,6 +66,7 @@ app.use(session({
   name: 'sessionId',
 }))
 
+app.use(utilities.checkJWTToken)
 /* ***********************
  * Routes
  *************************/
