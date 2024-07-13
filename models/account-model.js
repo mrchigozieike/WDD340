@@ -29,7 +29,6 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     return error.message
   }
 }
-
 /* **********************
  *   Check for existing email
  * ********************* */

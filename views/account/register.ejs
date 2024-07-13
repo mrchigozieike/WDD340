@@ -2,15 +2,15 @@
 <html lang="en">
 <div class="container">
   <%- include('../partials/head') %>
-  <h2>
-    <%= title %>
-  </h2>
+    <h2>
+      <%= title %>
+    </h2>
 
 
-  <div class="form-container">
-    <%- messages() %>
-      
-      <form action="/account/register" method="post">
+    <div class="formContainer">
+
+
+      <form id="registerForm" action="/account/register" method="post">
         <fieldset>
           <p class="required-fields">All Fields are required.</p>
           <div class="form-group">
@@ -41,10 +41,10 @@
               Show Password
             </button>
         </fieldset>
-  </div>
-  <input class="form-button" type="submit" value="Register" />
-  </fieldset>
-  </form>
+    </div>
+    <input class="form-button" type="submit" value="Register" />
+    </fieldset>
+    </form>
 </div>
 <script>
   const pswdBtn = document.querySelector("#togglePassword");
