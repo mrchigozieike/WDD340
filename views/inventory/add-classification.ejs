@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../partials/head') %>
+
 <!--This will show three distint sections:
  A Content heading, 
  a message and the Inventory Items Display. -->
-
-<% if (title) { %>
+<%- include('../partials/head') %>
     <h2>
         <%= title %>
     </h2>
-    <% } else { res.redirect('/') } %>
 
+    <form class="form-container" action="/inv/add-classification" method="post">
+        <fieldset>
 
-
-        <form id="management_form" action="/inv/add-classification" method="post">
-            <fieldset>
-               
-                <p>Field is required</p>
+            <p>Field is required</p>
+            <div class="form-group">
                 <label class="management-label">Classification Name<input type="text" name="classification_name"
                         id="classificationName" required pattern="[a-zA-Z]+"
                         value="<%= locals.classification_name %>"></label>
                 <span>Name must be alphabetic characters only</span>
-                <button type="submit">Add New Classification</button>
-            </fieldset>
-        </form>
+            </div>
+            <button type="submit">Add New Classification</button>
+        </fieldset>
+    </form>
 
 </html>
