@@ -25,11 +25,10 @@ async function buildRegister(req, res, next) {
     nav,
   })
 }
-
 /* ****************************************
 *  Process Registration
 * *************************************** */
-async function registerAccount(req, res) {
+async function registerAccount(req, res, next) {
   let nav = await utilities.getNav()
   const { account_firstname, account_lastname, account_email, account_password } = req.body
 
@@ -56,8 +55,7 @@ async function registerAccount(req, res) {
       nav,
     })
   }
-}
-
+} 
 /* ****************************************
  *  Process login request
  * ************************************ */
@@ -91,4 +89,4 @@ async function accountLogin(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, accountLogin }
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin }

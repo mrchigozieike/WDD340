@@ -17,6 +17,100 @@ body {
   /* Prevent image repetition */
 }
 
+
+
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: .85rem;
+  border-radius: 10px;
+}
+
+.form-container p {
+  margin: 8px auto;
+}
+
+.form-container label {
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: .85rem;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.form-group input:focus:invalid,
+textarea:focus:invalid {
+  background-color: rgb(245, 255, 188);
+  background-image: url("/images/site/invalid.png");
+  background-size: 16px 16px;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+.form-group input:required:valid,
+textarea:required.valid {
+  background-color: rgb(255, 255, 255);
+  background-image: url("/images/site/valid.png");
+  background-size: 16px 16px;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+.form-button {
+
+  padding: 5px;
+  margin-top: 10px;
+  background-color: #6b6d6c;
+  color: whitesmoke;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#togglePassword {
+  padding: 5px;
+  margin-top: 5px;
+  background-color: rgb(41, 39, 39);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+
+
+
+
+
 .home-link h1 {
   margin: 0;
 }
@@ -180,18 +274,20 @@ footer {
   position: relative;
   top: 30px;
   width: 99%;
-  
+
   border-radius: 10px;
 }
-form{
+
+form {
   width: 90%;
 }
-form-group{
-  background-color:rgba(0, 17, 17, 0.164);
+
+form-group {
+  background-color: rgba(0, 17, 17, 0.164);
   margin-top: 20px;
 }
 
-.account-reg{
+.account-reg {
   padding-left: 100px;
 }
 
@@ -219,7 +315,7 @@ form-group{
 }
 
 .vehicle-mp {
-  display: grid;  
+  display: grid;
   /* Two equal-width sub-columns */
 }
 
@@ -244,40 +340,46 @@ form-group{
 .vehicle-buttons {
   width: 100px;
 }
+
 .vehicle-buttons :hover {
   background-color: green;
 }
-.vehicle-mp{
+
+.vehicle-mp {
   padding-left: 10px;
   background-color: rgba(0, 17, 17, 0.164);
   width: 110px;
 }
-h5{
+
+h5 {
   background-color: #ffffff;
   width: 60px;
 }
-.estimate{
+
+.estimate {
   margin-top: -50px;
   padding-left: 220px;
   color: green;
 }
-.divine{
+
+.divine {
   margin: 200px;
   display: inline-block;
   width: 250px;
   margin: 2%;
   padding: 1rem;
   color: #a80808;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
-.vehicle-detail{
+.vehicle-detail {
   margin: 50px;
 }
 
-.management-label{
+.management-label {
   padding-top: 10px;
 }
+
 /* Mobile View ***************/
 #menu {
   display: block;
@@ -295,16 +397,17 @@ form {
   padding-left: 100px;
 
 }
-.form-button{
-  margin-left: 120px;
+
+fieldset{
+  background-color: rgba(169, 169, 169, 0.363);
 }
-.form-group{
+
+.form-group {
   margin: 6px;
- 
+
 }
-.required-fields{
-  padding-left: 100px;
-}
+
+
 fieldset {
   display: flex;
   flex-direction: column;
