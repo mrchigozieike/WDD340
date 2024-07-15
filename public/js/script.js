@@ -5,4 +5,11 @@ const hambutton = document.querySelector('#menu');
 hambutton.addEventListener('click', () => {
 	mainnav.classList.toggle('show');
 	hambutton.classList.toggle('show');
-});const visitsDisplay = document.querySelector("#visits");
+}); const visitsDisplay = document.querySelector("#visits");
+
+
+const form = document.querySelector("#updateForm")
+form.addEventListener("change", function () {
+	const updateBtn = document.querySelector("button")
+	updateBtn.removeAttribute("disabled")
+})

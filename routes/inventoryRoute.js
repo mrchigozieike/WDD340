@@ -20,4 +20,5 @@ router.post("/add-inventory", utilities.handleErrors(invController.addInventory)
 router.get("/delete-confirm", utilities.handleErrors(invController.buildDeleteConfirm));
 router.post("/delete-confirm", utilities.handleErrors(invController.deleteConfirm));
 
+router.post("/update", utilities.handleErrors(invController.updateInventory));
 module.exports = router;
