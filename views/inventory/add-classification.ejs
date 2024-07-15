@@ -11,7 +11,7 @@
 
     <form class="form-container" action="/inv/add-classification" method="post">
         <fieldset>
-
+            <%- messages() %>
             <p>Field is required</p>
             <div class="form-group">
                 <label class="management-label">Classification Name<input type="text" name="classification_name"
@@ -19,7 +19,7 @@
                         value="<%= locals.classification_name %>"></label>
                 <span>Name must be alphabetic characters only</span>
             </div>
-            <button type="submit">Add New Classification</button>
+            <button class="form-button"  type="submit">Add New Classification</button>
         </fieldset>
     </form>
 

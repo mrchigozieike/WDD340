@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="container">
+    <%- include('../partials/head') %>
+        <h2>
+            <%= title %>
+        </h2>
+
+        <div class="management-form">
+
+            <form id="delete_form" action="/inv/delete-confirm" method="post">
+                <fieldset>
+                    <legend></legend>
+                    <label class="management-label">Make<input type="text" name="inv_make" id="invMake" required
+                            pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_make %>" readonly></label>
+                    <label class="management-label">Model<input type="text" name="inv_model" id="invModel" required
+                            pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_model %>" readonly></label>
+                    <label class="management-label">Price<input type="number" name="inv_price" id="invPrice" required
+                            pattern="^\d+(\.\d{1,2})?$" value="<%= locals.inv_price %>" readonly></label>
+                    <label class="management-label">Year<input type="number" name="inv_year" id="invYear" required
+                            pattern="\d{4}" minlength="4" maxlength="4" value="<%= locals.inv_year %>" readonly></label>
+                    <p>Confirm Deletion - The delete is permanent.</p>
+                    <button type="submit">Delete Vehicle</button>
+                    <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                        <% } %>>
+                </fieldset>
+            </form>
+        </div>

@@ -64,6 +64,15 @@ invCont.buildAddInventory = async function (req, res, next) {
   })
 }
 
+invCont.buildDeleteConfirm = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  
+  res.render("./inventory/delete-confirm", {
+    title: "Delete Vehicle",
+    nav,
+    
+  })
+}
 /* ****************************************
 *  Process Classification
 * *************************************** */
@@ -79,14 +88,14 @@ invCont.addClassification = async function (req, res, next){
     req.flash(
       "notice",
       `The newcar classification ${classification_name} was succesfully aded.`)
-    res.status(201).render("./inventory/add-classification", {
+    res.status(201).render("inventory/add-classification", {
       title: "Add new Vehicle Classification",
       nav,
     
     })
   } else {
     req.flash("notice", "Provide a correct clasification name.")
-    res.status(501).render("./inventory/add-classification", {
+    res.status(501).render("inventory/add-classification", {
       title: "Add New Classification",
       nav,
       errors: null,
@@ -96,40 +105,46 @@ invCont.addClassification = async function (req, res, next){
 }
 
 /* ****************************************
-*  Process new vehicle
+*  Add new vehicle to Inventory
 * *************************************** */
-invCont.manageInventory = async function (req, res) {
-  let nav = await utilities.getNav()
+invCont.addInventory = async function (req, res) {
+  let nav = await utilities.getNav();
   const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body
+  
+  
+  const vehicleResult = await invModel.addInventory(
+    classification_id,
+    inv_make, 
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail, 
+    inv_price,
+    inv_year,
+    inv_miles, 
+    inv_color
+  );
 
-
-  const vehicleResult = await invModel.addNewVehicle(
-    classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color
-  )
-
-  const clasificationSelect = await utilities.buildClassificationList()
-
+ 
   if (vehicleResult) {
-    req.flash(
-      "notice",
-      `The new vehicle was succesfully aded.`
-    )
-    res.status(201).render("./inventory/management", {
-      title: "Vehicle Management",
+    req.flash("notice",`The ${inv_make} was successfully added.`);
+    res.status(201).render("inventory/add-invent", {
+      title: "Add new Vehicle to Inventory",
       nav,
       errors: null,
-      clasificationSelect
+      classificationList
     });
   } else {
-    req.flash("notice", "Sorry, the vehicle could not be added. Please try again.")
-    res.status(501).render("./inventory/add-inventory", {
+    req.flash("notice", "Sorry, the vehicle could not be added. Please try again.");
+    res.status(501).render("inventory/add-inventory", {
       title: "Add New Vehicle",
       nav,
       errors: null,
-      clasificationSelect
-    })
+      classificationList
+    });
   }
-}
+};
+
 
 /* ***************************
  *  Return Inventory by Classification As JSON
@@ -235,10 +250,7 @@ invCont.updateInventory = async function (req, res, next) {
   }
 }
 
-/* ***************************
- *  Build delete inventory view
- * ************************** */
-invCont.deleteView = async function (req, res, next) {
+invCont.deleteInventory = async function (req, res, next) {
   const inv_id = parseInt(req.params.invId)
   let nav = await utilities.getNav()
   const data = await invModel.getVehicleDetails(inv_id)
@@ -256,22 +268,6 @@ invCont.deleteView = async function (req, res, next) {
   })
 }
 
-
-/* ***************************
- *  Update Inventory Data
- * ************************** */
-invCont.deleteItem = async function (req, res, next) {
-  let nav = await utilities.getNav()
-  const inv_id = parseInt(req.body.inv_id)
-  const deleteResult = await invModel.deleteInventoryItem(inv_id)
-  if (deleteResult) {
-    req.flash("notice", `The item was successfully deleted.`)
-    res.redirect("/inv/")
-  } else {
-    req.flash("notice", "Sorry, the delete failed.")
-    res.redirect(`/inv/`)
-  }
-}
 
 
 module.exports = invCont;

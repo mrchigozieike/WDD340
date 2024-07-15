@@ -17,8 +17,7 @@ router.post("/add-classification", utilities.handleErrors(invController.addClass
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 router.post("/add-inventory", utilities.handleErrors(invController.addInventory));
 
-
-
-
+router.get("/delete-confirm", utilities.handleErrors(invController.buildDeleteConfirm));
+router.post("/delete-confirm", utilities.handleErrors(invController.deleteConfirm));
 
 module.exports = router;
