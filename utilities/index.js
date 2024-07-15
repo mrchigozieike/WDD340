@@ -143,6 +143,26 @@ Util.buildClassificationList = async function (classification_id = null) {
 }
 
 
+Util.buildInventoryList = async function (inv_id = null) {
+  let data = await invModel.getInventories()
+  let inventoryList =
+    '<select name="inv_id" id="inventoryList" required>'
+  inventoryList += "<option value=''>Choose an Inventory Item</option>"
+  data.rows.forEach((row) => {
+    inventoryList += '<option value="' + row.inv_id + '"'
+    if (
+      inv_id != null &&
+      row.inv_id == inv_id
+    ) {
+      inventoryList += " selected "
+    }
+    inventoryList += ">" + row.inv_make + " " + row.inv_model + " (" + row.inv_year + ")</option>"
+  })
+  inventoryList += "</select>"
+  return inventoryList
+}
+
+
 /* ****************************************
 * Middleware to check token validity
 **************************************** */
