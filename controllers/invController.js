@@ -1,7 +1,5 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
-
-
 const invCont = {}
 
 /* ***************************
@@ -19,6 +17,36 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
+
+invCont.buildByInventoryId = async function (req, res, next) {
+  const inventory_id = req.params.inventoryId; // Assuming inventoryId is passed as a route parameter
+  try {
+    const inventoryItem = await invModel.getInventoryById(inventory_id); // Fetch inventory item details
+    console.log(inventoryItem)
+    if (!inventoryItem) {
+      // Handle case where inventory item is not found
+      return res.status(404).send("Inventory item not found.");
+    }
+
+    // Example function to build a detailed view for an inventory item
+    const detailedView = utilities.buildInventoryDetailView(inventoryItem);
+
+    let nav = await utilities.getNav(); // Get navigation links or data
+
+    // Example: Render a detailed view template with inventory details
+    res.render("./inventory/details", {
+      title: inventoryItem.inv_make, // Example title using inventory item name
+      nav,
+      detailedView,
+    });
+  } catch (err) {
+    // Handle errors, e.g., database query errors
+    console.error("Error fetching inventory item:", err);
+    res.status(500).send("Error fetching inventory item details.");
+  }
+};
+
+
 /* **************************************
  * Get all the information of the car requested
  * ************************************ */
@@ -109,10 +137,6 @@ invCont.deleteView = async function (req, res, next) {
     inv_price: itemData.inv_price,
   })
 }
-
-
-
-
 
 
 /* ****************************************
