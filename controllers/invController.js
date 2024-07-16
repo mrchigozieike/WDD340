@@ -19,6 +19,22 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
+/* **************************************
+ * Get all the information of the car requested
+ * ************************************ */
+
+async function getVehicleDetails(inv_id) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory AS i
+          WHERE i.inv_id = $1`,
+      [inv_id]
+    );
+    return data.rows;
+  } catch (error) {
+    console.error("getinventorybyid error " + error);
+  }
+}
 
 invCont.buildByInvId = async function (req, res, next) {
   const inv_id = req.params.invId
@@ -45,20 +61,11 @@ invCont.buildManagement = async function (req, res, next) {
 }
 
 invCont.buildAddClassification = async function (req, res, next) {
-  const inv_id = parseInt(req.params.invId)
   let nav = await utilities.getNav()
-  const data = await invModel.getVehicleDetails(inv_id)
-  const itemData = data[0];
-  const itemName = `${itemData.inv_make} ${itemData.inv_model}`
   res.render("./inventory/add-classification", {
     title: "Add New Classification",
     nav,
-    errors: null,
-    inv_id: itemData.inv_id,
-    inv_make: itemData.inv_make,
-    inv_model: itemData.inv_model,
-    inv_year: itemData.inv_year,
-    inv_price: itemData.inv_price,
+
   })
 }
 
