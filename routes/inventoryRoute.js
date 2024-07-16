@@ -20,7 +20,9 @@ router.post("/add-inventory", utilities.handleErrors(invController.addInventory)
 router.get("/delete-confirm", utilities.handleErrors(invController.buildDeleteConfirm));
 router.post("/delete-confirm", utilities.handleErrors(invController.deleteConfirm));
 
-router.get("/edit-inventory", utilities.handleErrors(invController.BuildUpdateInventory));
+router.get("/edit-inventory", utilities.handleErrors(invController.editInventoryView));
 router.post("/edit-inventory", utilities.handleErrors(invController.updateInventory));
 
+
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 module.exports = router;

@@ -221,7 +221,6 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 }
 
-
 /* ***************************
  *  Build edit inventory view
  * ************************** */
@@ -229,6 +228,7 @@ invCont.editInventoryView = async function (req, res, next) {
   const inv_id = parseInt(req.params.invId)
   let nav = await utilities.getNav()
   const data = await invModel.getVehicleDetails(inv_id)
+  console.log(data)
   const itemData = data[0];
   console.log("classification: " + itemData.classification_id)
   const classificationSelect = await utilities.buildClassificationList(itemData.classification_id)

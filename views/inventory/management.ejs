@@ -7,38 +7,33 @@
     <ul>
       <li><a href="./add-classification">Add New Classification</a></li>
       <li><a href="./add-inventory">Add New Inventory Item</a></li>
-
+      
     </ul>
 
-
+    
     <h2>Manage Inventory</h2>
     <p>Choose a classification to see those inventory items</p>
-    <%- clasificationSelect %>
-      <table id="inventoryDisplay"></table>
+    <%- clasificationSelect %> 
+    
+    <table id="inventoryDisplay"></table>
+    
 
-      <ul>
-        <li><a href="./edit-inventory">Update Inventory Item</a></li>
-        <li><a href="./delete-confirm">Delete Inventory Item</a></li>
-      </ul>
+    <noscript>Javascript must be enabled</noscript>
+    <script src="../../js/inventory.js"></script>
 
-
-      <noscript>Javascript must be enabled</noscript>
-
-      <script src="../../js/inventory.js"></script>
-
-      <script>
-        const pswdBtn = document.querySelector('#pwordBtn');
-        pswdBtn.addEventListener('click', function () {
-          const pswdInput = document.querySelector('#pword');
-          const type = pswdInput.getAttribute('type');
-          if (type == 'password') {
-            pswdInput.setAttribute('type', 'text');
-            pswdBtn.innerHTML = "&#128275;"
-          }
-          else {
-            pswdInput.setAttribute('type', 'password');
-            pswdBtn.innerHTML = "&#128274;"
-          }
-        })
-      </script>
+    <script>
+      const pswdBtn = document.querySelector('#pwordBtn');
+      pswdBtn.addEventListener('click', function () {
+        const pswdInput = document.querySelector('#pword');
+        const type = pswdInput.getAttribute('type');
+        if (type == 'password') {
+          pswdInput.setAttribute('type', 'text');
+          pswdBtn.innerHTML = "&#128275;"
+        }
+        else {
+          pswdInput.setAttribute('type', 'password');
+          pswdBtn.innerHTML = "&#128274;"
+        }
+      })
+    </script>
   </div>
