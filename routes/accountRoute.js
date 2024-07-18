@@ -18,7 +18,7 @@ router.get("/register", Util.handleErrors(accountController.buildRegister))
 router.get("/", Util.checkLogin, Util.handleErrors(accountController.buildManagement))
 
 router.get('/logout', Util.handleErrors(accountController.accountLogout))
-router.get("/edit-inventory", Util.checkLogin, Util.handleErrors(accountController.buildAccountManagement))
+router.get("/edit", Util.checkLogin, Util.handleErrors(accountController.buildAccountManagement))
 
 
 /* ****************************************
