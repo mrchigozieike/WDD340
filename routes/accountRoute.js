@@ -1,20 +1,49 @@
-const express = require('express');
-const router = express.Router();
-const accountController = require('../controllers/accountController');
-const utilities = require('../utilities/');
+// Needed Resources 
+const express = require("express") // Brings express into scope.
+const router = new express.Router() // Using express we create a new router object.
+const accountController = require("../controllers/accountController") // Brings the invController into scope.
+const Util = require('../utilities/')
+const regValidate = require('../utilities/account-validation')
+
+
+
+/* ***************************
+ *  Build Account
+ * ************************** */
+// Deliver Login View
+router.get("/login", Util.handleErrors(accountController.buildLogin))
+// Route to build Default Account View
+router.get("/register", Util.handleErrors(accountController.buildRegister))
+// Route to check Login
+router.get("/", Util.checkLogin, Util.handleErrors(accountController.buildManagement))
+
+router.get('/logout', Util.handleErrors(accountController.accountLogout))
+router.get("/edit-inventory", Util.checkLogin, Util.handleErrors(accountController.buildAccountManagement))
 
 
 /* ****************************************
 *  Deliver login view
 * *************************************** */
-router.get(
-    "/login", 
+
+//Process the registration data
+router.post(
+    "/register",
+    regValidate.registrationRules(),
+    regValidate.checkRegData,
+    Util.handleErrors(accountController.registerAccount)
+)
+
+
+// Process the login request
+router.post(
+    "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    utilities.handleErrors(accountController.buildLogin))
+    Util.handleErrors(accountController.accountLogin))
+
+router.get("/register", Util.handleErrors(accountController.buildRegister))
+router.post("/register", Util.handleErrors(accountController.registerAccount))
+router.get("/", Util.checkLogin, Util.handleErrors(accountController.buildManagement))
 
 
-router.get("/register", utilities.handleErrors(accountController.buildRegister))
-router.post("/register", utilities.handleErrors(accountController.registerAccount))
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
 module.exports = router;

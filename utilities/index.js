@@ -4,17 +4,6 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
 
-/* ****************************************
- *  Check Login
- * ************************************ */
-Util.checkLogin = (req, res, next) => {
-  if (res.locals.loggedin) {
-    next()
-  } else {
-    req.flash("notice", "Please log in.")
-    return res.redirect("/account/login")
-  }
-}
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -176,6 +165,68 @@ Util.buildInventoryList = async function (inv_id = null) {
 }
 
 
+/* ************************
+ * Build HTML for vehicle detail view
+ ************************** */
+
+// Function to build HTML view for a single inventory item detail
+Util.buildVehicleDetails = function (vehicle) {
+  let view = '';
+
+  if (vehicle.length > 0) {
+    view = '<ul class="veh-display">';
+    vehicle.forEach(vehicle => {
+      view += '<div class="vehicle-detail">';
+      view += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" class="vehicle-image">`;
+
+      view += '</div>'; // close vehicle-detail
+
+
+      view += '<div class="vehicle-detail-left">';
+      view += `<h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>`;
+      view += '<div class="vehicle-pm">';
+      view += `<h2><strong>No Haggle-Price<sup>1</sup>:&nbsp; &nbsp; $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</strong></h2>`;
+      view += `<p><strong>Mileage</strong></p>`;
+      view += '<div class="vehicle-mp">';
+
+
+
+
+      view += `<p><strong>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</strong></p>`;
+      view += `<p>ESTIMATE PAYMENTS</p>`;
+      view += '</div>'; // close vehicle-mp
+      view += '</div>'; // close vehicle-pm
+
+      view += '<div class="vehicle-name">';
+
+      view += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>`;
+      view += '<div class="vehicle-info">';
+      // Add a new section for buttons
+      view += '<div class=vehicle-buttons">';
+
+      view += '<button class="button">START MY PURCHASE</button>';
+      view += '<button class="button">CONTACT US NOW</button>';
+      view += '<button class="button">SCHEDULE TEST DRIVE</button>';
+      view += '<button class="button">APPLY FOR FINANCING</button>';
+      view += '</div>'; // close vehicle-buttons 
+
+
+      view += '</div>'; // close vehicle-info
+      view += '<div class="vehicle-info">';
+      view += `<p><strong>Year:</strong> ${vehicle.inv_year}</p>`;
+      view += `<p><strong>Color:</strong> ${vehicle.inv_color}</p>`;
+
+      view += '</div>'; // close vehicle-info
+      view += '</div>'; // close vehicle-info
+
+
+    });
+
+  }
+
+  return view;
+};
+
 /* ****************************************
 * Middleware to check token validity
 **************************************** */
@@ -198,4 +249,74 @@ Util.checkJWTToken = (req, res, next) => {
     next()
   }
 }
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
+
+Util.checkAuthorization = (req, res, next) => {
+  if (res.locals.loggedin && 
+    ((res.locals.accountData.account_type == "Admin")
+    || (res.locals.accountData.account_type == "Employee"))) {
+    next()  
+  } else {
+    req.flash('notice', 'Please, log in with an authorized account')
+    return res.redirect("/account/login")
+  }
+ }
+
+/**************
+ * Build header Login/Logout
+ *************/
+Util.getTools = (req) =>{
+  if(req.cookies.jwt){
+      try{
+          const cookieData = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
+          let html = `<p>Welcome,</p>
+          <a title="Click to access account management" href="/account/">${cookieData.account_firstname}</a>
+                      <a title="Click to log out" href="/account/logout">Log out</a>`;
+          return html;
+      }
+      catch (error){
+          throw new Error (error);
+      }
+  }
+  else{
+      let html = '<a title="Click to log in" href="/account/login">My account</a>';
+      return html;
+  }
+}
+
+/**************
+* Authorization only to Employee and Admin accounts
+*************/
+Util.authorizedAccounts = (req, res, next) =>{
+  if(req.cookies.jwt){
+      try{
+          const cookieData = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
+          if (cookieData.account_type == "Employee" || cookieData.account_type == "Admin"){
+              next();
+          }
+          else{
+              req.flash("notice", "Forbidden access");
+              res.status(401).redirect("/account/login");
+          }
+      }
+      catch (error){
+          throw new Error (error);
+      }
+  }
+  else{
+      res.status(401).redirect("/account/login");
+  }
+}
+
 module.exports = Util;
