@@ -252,44 +252,88 @@ invCont.editInventoryView = async function (req, res, next) {
   })
 }
 
-/* ***************************
- *  Update Inventory Data
- * ************************** */
-invCont.updateInventory = async function (req, res, next) {
-  let nav = await utilities.getNav()
-  const {inv_id, inv_make,inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id } = req.body
-  const updateResult = await invModel.updateInventory(inv_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id)
 
-  if (updateResult) {
-    const itemName = updateResult.inv_make + " " + updateResult.inv_model
-    req.flash("notice", `The ${itemName} was successfully updated.`)
-    res.redirect("/inv/")
-  } else {
-    const classificationSelect = await utilities.buildClassificationList(classification_id)
-    const itemName = `${inv_make} ${inv_model}`
-    req.flash("notice", "Sorry, the insert failed.")
-    res.status(501).render("inventory/edit-inventory", {
+/* ***************************
+ *  Build edit inventory view
+ * ************************** */
+invCont.editInventoryView = async function (req, res, next) {
+  const inv_id = parseInt(req.params.invId);
+  let nav = await utilities.getNav();
+
+  const itemData = await invModel.getVehicleDetails(inv_id); // Fetch inventory item data
+  const item = itemData[0]; // Assuming getVehicleDetails returns an array
+
+  const classificationSelect = await utilities.buildClassificationList(item.classification_id);
+  const itemName = `${item.inv_make} ${item.inv_model}`;
+
+  res.render("./inventory/edit-inventory", {
     title: "Edit " + itemName,
     nav,
     classificationSelect: classificationSelect,
     errors: null,
-    inv_id,
-    inv_make,
-    inv_model,
-    inv_year,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_miles,
-    inv_color,
-    classification_id
-    })
-  }
+    inv_id: item.inv_id,
+    inv_make: item.inv_make,
+    inv_model: item.inv_model,
+    inv_year: item.inv_year,
+    inv_description: item.inv_description,
+    inv_image: item.inv_image,
+    inv_thumbnail: item.inv_thumbnail,
+    inv_price: item.inv_price,
+    inv_miles: item.inv_miles,
+    inv_color: item.inv_color,
+    classification_id: item.classification_id
+  });
 }
 
+/* ***************************
+ *  Build delete inventory confirmation view
+ * ************************** */
+invCont.buildDeleteConfirmView = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id);
+  let nav = await utilities.getNav();
+  const itemData = await invModel.getInventoryById(inv_id);
+  if (itemData.length > 0) {
+    const item = itemData[0];
+    const itemName = `${item.inv_make} ${item.inv_model}`;
+    res.render("./inventory/delete-confirm", {
+      title: "Delete " + itemName,
+      nav,
+      errors: null,
+      inv_id: item.inv_id,
+      inv_make: item.inv_make,
+      inv_model: item.inv_model,
+      inv_year: item.inv_year,
+      inv_description: item.inv_description,
+      inv_image: item.inv_image,
+      inv_thumbnail: item.inv_thumbnail,
+      inv_price: item.inv_price,
+      inv_miles: item.inv_miles,
+      inv_color: item.inv_color,
+      classification_id: item.classification_id
+    });
+  } else {
+    req.flash("notice", "Sorry, the inventory item could not be found.");
+    res.redirect("/inv/management");
+  }
+};
 
+/* ***************************
+ *  Delete Inventory Item
+ * ************************** */
+invCont.deleteInventory = async function (req, res, next) {
+  const inv_id = parseInt(req.body.inv_id); // Assuming the ID is sent in the request body
+  let nav = await utilities.getNav();
 
+  const deleteResult = await invModel.deleteInventoryById(inv_id);
+
+  if (deleteResult) {
+    req.flash("notice", "The vehicle was successfully deleted.");
+    res.redirect("/inv/management");
+  } else {
+    req.flash("notice", "Sorry, the vehicle could not be deleted.");
+    res.redirect("/inv/management");
+  }
+};
 
 
 module.exports = invCont;
