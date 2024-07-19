@@ -31,7 +31,10 @@
             <label class="management-label">Year<input type="number" name="inv_year" id="invYear" required  pattern="\d{4}" minlength="4" maxlength="4" value="<%= locals.inv_year %>"></label>
             <label class="management-label">Miles<input type="number" name="inv_miles" id="invMiles" required pattern="[0-9]+" value="<%= locals.inv_miles %>"></label>
             <label class="management-label">Color<input type="text" name="inv_color" id="invColor" required pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_color %>"></label>
-            <button type="submit" disabled>Update Vehicle</button>
+           
+           
+              <input class="form-button" type="submit" value="Update" />
+            
             <input type="hidden" name="inv_id"
             <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
             <% } %>>   
@@ -39,4 +42,4 @@
     </form>
 </div>
 
-<script src="../../js/inv-update.js"></script>
+<script src="../../utilities/inventory-validation.js"></script>

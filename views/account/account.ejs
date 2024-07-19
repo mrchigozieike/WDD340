@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>
+        <%= title %>
+    </h2>
+
+
+
+    <!-- CSE Motor Login Form -->
+    <div class="form-container">
+        <%- messages() %>
+
+            <div class="container">
+                <% if (typeof errors !=='undefined' && errors.length> 0) { %>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <% errors.forEach(function(error) { %>
+                                <li>
+                                    <%= error %>
+                                </li>
+                                <% }) %>
+                        </ul>
+                    </div>
+                    <% } %>
+                        <% if (typeof messages !=='undefined' && messages.length> 0) { %>
+                            <div class="alert alert-success
