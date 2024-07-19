@@ -18,15 +18,11 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildAddInvent
 router.post("/add-inventory", utilities.handleErrors(invController.addInventory));
 
 
-
-// New route to handle deleting inventory by inventory_id
-router.post('/delete/:invId', utilities.handleErrors(invController.deleteInventory));
-
 // New route to handle editing inventory by inventory_id
 router.get('/edit/:invId', utilities.handleErrors(invController.editInventoryView));
 
-//router.get("/delete-confirm", utilities.handleErrors(invController.buildDeleteConfirm));
-//router.post("/delete-confirm", utilities.handleErrors(invController.deleteConfirm));
+router.get('/delete/:inv_id', utilities.handleErrors(invController.buildDeleteConfirmView));
+router.post('/delete', utilities.handleErrors(invController.deleteInventory));
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 module.exports = router;

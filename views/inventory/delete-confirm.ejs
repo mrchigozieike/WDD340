@@ -7,10 +7,26 @@
     <% messages() %>
 
 
-
-      <div class="management-form">
-
-        <form action="/inv/delete/<%= inv_id %>" method="post">
-
-        </form>
+      <form action="/inv/delete" method="post">
+        <input type="hidden" name="inv_id" value="<%= inv_id %>">
+        <p>Are you sure you want to delete this vehicle?</p>
+        <ul>
+          <li>Make: <%= inv_make %>
+          </li>
+          <li>Model: <%= inv_model %>
+          </li>
+          <li>Year: <%= inv_year %>
+          </li>
+          <li>Description: <%= inv_description %>
+          </li>
+          <li>Price: <%= inv_price %>
+          </li>
+          <li>Miles: <%= inv_miles %>
+          </li>
+          <li>Color: <%= inv_color %>
+          </li>
+        </ul>
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="/inv/management" class="btn btn-secondary">Cancel</a>
+      </form>
       </div>
