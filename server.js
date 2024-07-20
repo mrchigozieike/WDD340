@@ -20,6 +20,9 @@ const static = require("./routes/static");
 const session = require("express-session");
 const app = express();
 
+// Serve favicon
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 /* ***********************
  * View Engine and Templates
  *************************/
