@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const invController = require('../controllers/invController');
 const utilities = require('../utilities/');
+const invValidate = require('../utilities/inventory-validation');
 
 router.get('/', utilities.handleErrors(invController.getInventory));
 router.get('/type/:classificationId', utilities.handleErrors(invController.buildByClassificationId));
@@ -20,6 +21,7 @@ router.post("/add-inventory", utilities.handleErrors(invController.addInventory)
 
 // New route to handle editing inventory by inventory_id
 router.get('/edit/:invId', utilities.handleErrors(invController.editInventoryView));
+router.post('/edit', utilities.handleErrors(invController.editInventoryView));
 
 router.get('/delete/:inv_id', utilities.handleErrors(invController.buildDeleteConfirmView));
 router.post('/delete', utilities.handleErrors(invController.deleteInventory));

@@ -5,6 +5,19 @@ require("dotenv").config()
 const bcrypt = require("bcryptjs")
 
 /* ****************************************
+*  Deliver login view
+* *************************************** */
+
+async function buildLogin(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/login", {
+    title: "Login",
+    nav,
+  })
+}
+
+
+/* ****************************************
 *  Deliver management view
 * *************************************** */
 async function buildManagement(req, res, next) {
@@ -28,17 +41,6 @@ async function buildAccountManagement(req, res, next) {
   })
 }
 
-/* ****************************************
-*  Deliver login view
-* *************************************** */
-
-async function buildLogin(req, res, next) {
-  let nav = await utilities.getNav()
-  res.render("account/login", {
-    title: "Login",
-    nav,
-  })
-}
 
 /* ****************************************
 *  Deliver registration view

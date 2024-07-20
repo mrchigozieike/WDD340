@@ -1,5 +1,5 @@
 const invModel = require("../models/inventory-model")
-const Util = {}
+const utilities = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
@@ -8,7 +8,7 @@ require("dotenv").config()
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
-Util.getNav = async function (req, res, next) {
+utilities.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
@@ -34,13 +34,13 @@ Util.getNav = async function (req, res, next) {
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
-Util.handleErrors = (fn) => (req, res, next) => { Promise.resolve(fn(req, res, next)).catch(next) }
+utilities.handleErrors = utilities => (req, res, next) => Promise.resolve(utilities(req, res, next)).catch(next)
+utilities.handleErrors = (utilities) => (req, res, next) => { Promise.resolve(utilities(req, res, next)).catch(next) }
 
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
-Util.buildClassificationGrid = async function (data) {
+utilities.buildClassificationGrid = async function (data) {
   let grid
   if (data.length > 0) {
     grid = '<ul id="inv-display">'
@@ -76,7 +76,7 @@ Util.buildClassificationGrid = async function (data) {
  ************************** */
 
 // Function to build HTML view for a single inventory item detail
-Util.buildInventoryDetailView = function (vehicle) {
+utilities.buildInventoryDetailView = function (vehicle) {
   let view = '';
 
   if (vehicle.length > 0) {
@@ -125,7 +125,7 @@ Util.buildInventoryDetailView = function (vehicle) {
   return view;
 };
 
-Util.buildClassificationList = async function (classification_id = null) {
+utilities.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
   let classificationList =
     '<select name="classification_id" id="classificationList" required>'
@@ -145,7 +145,7 @@ Util.buildClassificationList = async function (classification_id = null) {
 }
 
 
-Util.buildInventoryList = async function (inv_id = null) {
+utilities.buildInventoryList = async function (inv_id = null) {
   let data = await invModel.getInventories()
   let inventoryList =
     '<select name="inv_id" id="inventoryList" required>'
@@ -170,7 +170,7 @@ Util.buildInventoryList = async function (inv_id = null) {
  ************************** */
 
 // Function to build HTML view for a single inventory item detail
-Util.buildVehicleDetails = function (vehicle) {
+utilities.buildVehicleDetails = function (vehicle) {
   let view = '';
 
   if (vehicle.length > 0) {
@@ -230,7 +230,7 @@ Util.buildVehicleDetails = function (vehicle) {
 /* ****************************************
 * Middleware to check token validity
 **************************************** */
-Util.checkJWTToken = (req, res, next) => {
+utilities.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt,
@@ -250,19 +250,9 @@ Util.checkJWTToken = (req, res, next) => {
   }
 }
 
-/* ****************************************
- *  Check Login
- * ************************************ */
-Util.checkLogin = (req, res, next) => {
-  if (res.locals.loggedin) {
-    next()
-  } else {
-    req.flash("notice", "Please log in.")
-    return res.redirect("/account/login")
-  }
-}
 
-Util.checkAuthorization = (req, res, next) => {
+
+utilities.checkAuthorization = (req, res, next) => {
   if (res.locals.loggedin && 
     ((res.locals.accountData.account_type == "Admin")
     || (res.locals.accountData.account_type == "Employee"))) {
@@ -276,7 +266,7 @@ Util.checkAuthorization = (req, res, next) => {
 /**************
  * Build header Login/Logout
  *************/
-Util.getTools = (req) =>{
+utilities.getTools = (req) =>{
   if(req.cookies.jwt){
       try{
           const cookieData = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
@@ -298,7 +288,7 @@ Util.getTools = (req) =>{
 /**************
 * Authorization only to Employee and Admin accounts
 *************/
-Util.authorizedAccounts = (req, res, next) =>{
+utilities.authorizedAccounts = (req, res, next) =>{
   if(req.cookies.jwt){
       try{
           const cookieData = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
@@ -319,4 +309,4 @@ Util.authorizedAccounts = (req, res, next) =>{
   }
 }
 
-module.exports = Util;
+module.exports = utilities;

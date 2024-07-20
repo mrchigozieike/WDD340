@@ -23,31 +23,31 @@
               <fieldset>
                 <legend></legend>
                 <h4>All fields is required</h4>
-                <label class="management-label">Classification <%- classificationSelect %> </label>
-                <label class="management-label">Make<input type="text" name="inv_make" id="invMake" required
+                <label class="management-label">Edit Classification <%- classificationSelect %> </label>
+                <label class="management-label">Edit Make<input type="text" name="inv_make" id="invMake" required
                     pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_make %>"></label>
-                <label class="management-label">Model<input type="text" name="inv_model" id="invModel" required
+                <label class="management-label">Edit Model<input type="text" name="inv_model" id="invModel" required
                     pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_model %>"></label>
-                <label class="management-label">Description<textarea name="inv_description" id="invDescription" rows="8"
+                <label class="management-label">Edit Description<textarea name="inv_description" id="invDescription" rows="8"
                     cols="50" required minlength="30" maxlength="300"><%= locals.inv_description %></textarea></label>
-                <label class="management-label">Image Path<input type="text" name="inv_image" id="invImage" required
+                <label class="management-label">Edit Image Path<input type="text" name="inv_image" id="invImage" required
                     pattern="[a-zA-Z0-9/_.-]+"
                     value="<%= locals.inv_image || '/images/vehicles/no-image.png' %>"></label>
-                <label class="management-label">Thumbnail Path<input type="text" name="inv_thumbnail" id="invThumbnail"
+                <label class="management-label">Edit Thumbnail Path<input type="text" name="inv_thumbnail" id="invThumbnail"
                     required pattern="[a-zA-Z0-9/_.-]+"
                     value="<%= locals.inv_thumbnail || '/images/vehicles/no-image.png' %>"></label>
-                <label class="management-label">Price<input type="number" name="inv_price" id="invPrice" required
+                <label class="management-label">Edit Price<input type="number" name="inv_price" id="invPrice" required
                     pattern="^\d+(\.\d{1,2})?$" value="<%= locals.inv_price %>"></label>
-                <label class="management-label">Year<input type="number" name="inv_year" id="invYear" required
+                <label class="management-label">Edit Year<input type="number" name="inv_year" id="invYear" required
                     pattern="\d{4}" minlength="4" maxlength="4" value="<%= locals.inv_year %>"></label>
-                <label class="management-label">Miles<input type="number" name="inv_miles" id="invMiles" required
+                <label class="management-label">Edit Miles<input type="number" name="inv_miles" id="invMiles" required
                     pattern="[0-9]+" value="<%= locals.inv_miles %>"></label>
-                <label class="management-label">Color<input type="text" name="inv_color" id="invColor" required
+                <label class="management-label">Edit Color<input type="text" name="inv_color" id="invColor" required
                     pattern="[a-zA-Z0-9 ]+" value="<%= locals.inv_color %>">
                   </label>
 
                 <input class="form-button" type="submit" value="Update" />
-
+                
 
                 <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
                   <% } %>>

@@ -1,211 +1,276 @@
-const accountModel = require("../models/account-model");
-const utilities = require(".");
-const { body, validationResult } = require("express-validator");
+const invModel = require("../models/inventory-model")
 
-const validate = {};
+const utilities = require(".")
+const { body, validationResult } = require("express-validator")
+ const validate = {}
 
-/*  **********************************
- *  Registration Data Validation Rules
- * ********************************* */
-validate.registrationRules = () => {
-  return [
-    body("account_firstname")
+  /*  **********************************
+  *  Registration Data Validation Rules
+  * ********************************* */
+validate.classificationRules = () => {
+  return [   
+    // valid classification is required and cannot already exist in the database
+    body("classification_name")
       .trim()
-      .escape()
       .notEmpty()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a first name."),
-
-    body("account_lastname")
-      .trim()
-      .escape()
-      .notEmpty()
-      .isLength({ min: 2 })
-      .withMessage("Please provide a last name."),
-
-    body("account_email")
-      .trim()
-      .isEmail()
-      .normalizeEmail()
-      .withMessage("A valid email is required.")
-      .custom(async (account_email) => {
-        const emailExists = await accountModel.checkExistingEmail(account_email);
-        if (emailExists) {
-          throw new Error("Email exists. Please log in or use a different email");
+      .isAlpha() 
+      .isLength({ min: 1 })     
+      .withMessage("A valid classification is required.")
+      .custom(async (classification_name) => {
+        const classExists = await invModel.checkExistingClassification(classification_name);
+        if (classExists){
+          throw new Error("Classification exists. Please check the classification name");
         }
-      }),
-
-    body("account_password")
-      .trim()
-      .notEmpty()
-      .isStrongPassword({
-        minLength: 12,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
       })
-      .withMessage("Password does not meet requirements."),
-  ];
+  ]
 };
 
-/* ******************************
- * Check data and return errors or continue to registration
+
+  /* ******************************
+ * Check data and return errors or continue to management
  * ***************************** */
-validate.checkRegData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body;
-  let errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav();
-    res.render("account/register", {
-      errors: errors.array(),
-      title: "Registration",
-      nav,
-      account_firstname,
-      account_lastname,
-      account_email,
-    });
-    return;
-  }
-  next();
-};
-
-/*  **********************************
- *  Log in Data Validation Rules
- * ********************************* */
-validate.loginRules = () => {
-  return [
-    body("account_email")
-      .trim()
-      .isEmail()
-      .normalizeEmail()
-      .withMessage("A valid email is required."),
-
-    body("account_password")
-      .trim()
-      .notEmpty()
-      .isStrongPassword({
-        minLength: 12,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
+validate.checkClassData = async (req, res, next) => {
+    const { classification_name } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      res.render("inventory/add-classification", {
+        errors,
+        title: "Add New Classification",
+        nav,
+        classification_name
       })
-      .withMessage("Password does not meet requirements."),
-  ];
-};
-
-/* ******************************
- * Check data and return errors or continue to log in
- * ***************************** */
-validate.checkLoginData = async (req, res, next) => {
-  const { account_email } = req.body;
-  let errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav();
-    let tools = utilities.getTools(req);
-    res.render("account/login", {
-      errors: errors.array(),
-      title: "Login",
-      tools,
-      nav,
-      account_email,
-    });
-    return;
+      return
+    }
+    next()
   }
-  next();
-};
 
-/*  **********************************
- *  Update Account Data Validation Rules
- * ********************************* */
-validate.updateAccountRules = () => {
-  return [
-    body("account_firstname")
-      .trim()
-      .escape()
+  validate.inventoryRules = () => {
+    return [   
+      
+      body('classification_id')
       .notEmpty()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a first name."),
+      .withMessage('Classification is required.'),
 
-    body("account_lastname")
-      .trim()
-      .escape()
-      .notEmpty()
-      .isLength({ min: 2 })
-      .withMessage("Please provide a last name."),
-
-    body("account_email")
-      .trim()
-      .isEmail()
-      .normalizeEmail()
-      .withMessage("A valid email is required.")
-      .custom(async (account_email, { req }) => {
-        const emailExists = await accountModel.checkExistingEmail(account_email);
-        if (emailExists && emailExists.account_id !== req.body.account_id) {
-          throw new Error("Email exists. Please log in or use a different email");
-        }
-      }),
-  ];
-};
-
-/* ******************************
- * Check data and return errors or continue to update
- * ***************************** */
-validate.checkUpdateAccountData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body;
-  let errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav();
-    res.render("account/update", {
-      errors: errors.array(),
-      title: "Edit Account",
-      nav,
-      account_firstname,
-      account_lastname,
-      account_email,
-    });
-    return;
-  }
-  next();
-};
-
-/*  **********************************
- *  Update password Data Validation Rules
- * ********************************* */
-validate.updatePasswordRules = () => {
-  return [
-    body("account_password")
+    body('inv_make')
       .trim()
       .notEmpty()
-      .isStrongPassword({
-        minLength: 12,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      })
-      .withMessage("Password does not meet requirements."),
-  ];
-};
+      .matches(/^[a-zA-Z0-9 ]+$/)
+      .withMessage('Make can only contain alphanumeric characters and spaces.'),
 
-/* ******************************
- * Check data and return errors or continue to update
- * ***************************** */
-validate.checkUpdatePasswordData = async (req, res, next) => {
-  let errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    let nav = await utilities.getNav();
-    let tools = utilities.getTools(req);
-    res.render("account/update", {
-      errors: errors.array(),
-      title: "Edit Account",
-      tools,
-      nav,
-    });
-    return;
-  }
-  next();
-};
+    body('inv_model')
+      .trim()
+      .notEmpty()
+      .matches(/^[a-zA-Z0-9 ]+$/)
+      .withMessage('Model can only contain alphanumeric characters and spaces.'),
 
-module.exports = validate;
+      body('inv_description')
+      .trim()
+      .notEmpty()
+      .isLength({ min: 30, max: 100 })
+      .withMessage('Description must be between 30 and 100 characters.'),
+
+    body('inv_image')
+      .trim()
+      .notEmpty()
+      .matches(/^[a-zA-Z0-9\/_.-]+$/)
+      .withMessage('Image Path can only contain alphanumeric characters, slashes, underscores, hyphens and dots.'),
+
+    body('inv_thumbnail')
+      .trim()
+      .notEmpty()
+      .matches(/^[a-zA-Z0-9\/_.-]+$/)
+      .withMessage('Thumbnail Path can only contain alphanumeric characters, slashes, underscores, and hyphens.'),
+
+    body('inv_price')
+      .trim()
+      .notEmpty()
+      .matches(/^\d+(\.\d{1,2})?$/)
+      .withMessage('Price must be a valid monetary value with up to two decimal places.'),
+
+    body('inv_year')
+      .trim()
+      .notEmpty()
+      .matches(/^\d{4}$/)
+      .withMessage('Year must be a 4-digit number.'),
+
+    body('inv_miles')
+      .trim()
+      .notEmpty()
+      .matches(/^[0-9]+$/)
+      .withMessage('Miles can only contain numeric characters.'),
+
+    body('inv_color')
+      .trim()
+      .notEmpty()
+      .matches(/^[a-zA-Z0-9 ]+$/)
+      .withMessage('Color can only contain alphanumeric characters and spaces.')
+    ]
+  };
+  
+  
+    /* ******************************
+   * Check data and return errors or continue to management
+   * ***************************** */
+  validate.checkInventoryData = async (req, res, next) => {
+      const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body
+      let errors = []
+      errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let classificationList = await utilities.buildClassificationList(classification_id);
+        res.render("inventory/add-inventory", {
+          errors,
+          title: "Add New Vehicle",
+          nav,
+          classificationList,
+          inv_make,
+          inv_model,
+          inv_description,
+          inv_image,
+          inv_thumbnail,
+          inv_price,
+          inv_year,
+          inv_miles,
+          inv_color
+
+        })
+        return
+      }
+      next()
+    }
+  
+    /* ******************************
+   * Check data and return errors or continue to edit view
+   * ***************************** */
+    validate.checkUpdateData = async (req, res, next) => {
+      const { inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, inv_id } = req.body
+      let errors = []
+      errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        const data = await invModel.getVehicleDetails(inv_id)
+        const itemData = data[0];
+        const classificationSelect = await utilities.buildClassificationList(itemData.classification_id)
+        const itemName = `${itemData.inv_make} ${itemData.inv_model}`
+        res.render("inventory/edit-inventory", {
+          errors,
+          title:`Edit ${itemName}`,
+          nav,
+          classificationSelect,
+          inv_make,
+          inv_model,
+          inv_description,
+          inv_image,
+          inv_thumbnail,
+          inv_price,
+          inv_year,
+          inv_miles,
+          inv_color,
+          inv_id
+
+        })
+        return
+      }
+      next()
+    }
+  
+    validate.newInventoryRules = () => {
+      return [   
+        
+        body('classification_id')
+        .notEmpty()
+        .withMessage('Classification is required.'),
+  
+      body('inv_make')
+        .trim()
+        .notEmpty()
+        .matches(/^[a-zA-Z0-9 ]+$/)
+        .withMessage('Make can only contain alphanumeric characters and spaces.'),
+  
+      body('inv_model')
+        .trim()
+        .notEmpty()
+        .matches(/^[a-zA-Z0-9 ]+$/)
+        .withMessage('Model can only contain alphanumeric characters and spaces.'),
+  
+        body('inv_description')
+        .trim()
+        .notEmpty()
+        .isLength({ min: 30, max: 300 })
+        .withMessage('Description must be between 30 and 300 characters.'),
+  
+      body('inv_image')
+        .trim()
+        .notEmpty()
+        .matches(/^[a-zA-Z0-9\/_.-]+$/)
+        .withMessage('Image Path can only contain alphanumeric characters, slashes, underscores, hyphens and dots.'),
+  
+      body('inv_thumbnail')
+        .trim()
+        .notEmpty()
+        .matches(/^[a-zA-Z0-9\/_.-]+$/)
+        .withMessage('Thumbnail Path can only contain alphanumeric characters, slashes, underscores, and hyphens.'),
+  
+      body('inv_price')
+        .trim()
+        .notEmpty()
+        .matches(/^\d+(\.\d{1,2})?$/)
+        .withMessage('Price must be a valid monetary value with up to two decimal places.'),
+  
+      body('inv_year')
+        .trim()
+        .notEmpty()
+        .matches(/^\d{4}$/)
+        .withMessage('Year must be a 4-digit number.'),
+  
+      body('inv_miles')
+        .trim()
+        .notEmpty()
+        .matches(/^[0-9]+$/)
+        .withMessage('Miles can only contain numeric characters.'),
+  
+      body('inv_color')
+        .trim()
+        .notEmpty()
+        .matches(/^[a-zA-Z0-9 ]+$/)
+        .withMessage('Color can only contain alphanumeric characters and spaces.')
+      ]
+    };
+
+
+    validate.checkUpdateData = async (req, res, next) => {
+      const { inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, inv_id } = req.body;
+      const errors = validationResult(req);
+    
+      if (!errors.isEmpty()) {
+        let nav = await utilities.getNav();
+        const data = await invModel.getVehicleDetails(inv_id);
+        const itemData = data[0];
+        const classificationSelect = await utilities.buildClassificationList(itemData.classification_id);
+        const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+        return res.render("inventory/edit-inventory", {
+          errors,
+          title: `Edit ${itemName}`,
+          nav,
+          classificationSelect,
+          inv_make,
+          inv_model,
+          inv_description,
+          inv_image,
+          inv_thumbnail,
+          inv_price,
+          inv_year,
+          inv_miles,
+          inv_color,
+          inv_id
+        });
+      }
+      next();
+    };
+    
+
+
+
+module.exports = validate

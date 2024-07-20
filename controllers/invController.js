@@ -304,5 +304,45 @@ invCont.deleteInventory = async function (req, res, next) {
   }
 };
 
+/* ***************************
+ *  Update Inventory Item
+ * ************************** */
+invCont.updateInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const { inv_id, classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body
+
+  const updateResult = await invModel.updateInventory(
+    inv_id, classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color
+  )
+
+  if (updateResult) {
+    req.flash(
+      "notice",
+      `The vehicle ${inv_make} ${inv_model} was successfully updated.`
+    )
+    res.status(200).redirect(`/inv/details/${inv_id}`)
+  } else {
+    req.flash("notice", "Sorry, the vehicle could not be updated. Please try again.")
+    const classificationSelect = await utilities.buildClassificationList(classification_id);
+    res.status(501).render("./inventory/edit-inventory", {
+      title: `Edit ${inv_make} ${inv_model}`,
+      nav,
+      classificationSelect,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    })
+  }
+};
+
 
 module.exports = invCont;

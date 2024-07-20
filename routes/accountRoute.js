@@ -2,23 +2,24 @@
 const express = require("express") // Brings express into scope.
 const router = new express.Router() // Using express we create a new router object.
 const accountController = require("../controllers/accountController") // Brings the invController into scope.
-const Util = require('../utilities/')
+const utilities = require('../utilities/')
 const regValidate = require('../utilities/account-validation')
 
 // Route to build Default Account View
-router.get("/register", Util.handleErrors(accountController.buildRegister))
-// Route to check Login
-router.get("/", Util.checkLogin, Util.handleErrors(accountController.buildManagement))
+router.get("/register", utilities.handleErrors(accountController.buildRegister))
+// Route to build Login
+router.get("/login", utilities.handleErrors(accountController.buildLogin))
 
-router.get('/logout', Util.handleErrors(accountController.accountLogout))
-router.get("/edit", Util.checkLogin, Util.handleErrors(accountController.buildAccountManagement))
+router.get('/logout', utilities.handleErrors(accountController.accountLogout))
+router.get("/edit", utilities.handleErrors(accountController.buildAccountManagement))
+
 
 //Process the registration data
 router.post(
     "/register",
     regValidate.registrationRules(),
     regValidate.checkRegData,
-    Util.handleErrors(accountController.registerAccount)
+    utilities.handleErrors(accountController.registerAccount)
 )
 
 
@@ -27,11 +28,11 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    Util.handleErrors(accountController.accountLogin))
+    utilities.handleErrors(accountController.accountLogin))
 
-router.get("/register", Util.handleErrors(accountController.buildRegister))
-router.post("/register", Util.handleErrors(accountController.registerAccount))
-router.get("/", Util.checkLogin, Util.handleErrors(accountController.buildManagement))
+router.get("/register", utilities.handleErrors(accountController.buildRegister))
+router.post("/register", utilities.handleErrors(accountController.registerAccount))
+router.get("/", utilities.handleErrors(accountController.buildManagement))
 
 
 module.exports = router;
