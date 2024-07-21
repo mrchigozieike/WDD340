@@ -22,6 +22,7 @@ router.post("/add-inventory", utilities.handleErrors(invController.addInventory)
 // New route to handle editing inventory by inventory_id
 router.get('/edit/:invId', utilities.handleErrors(invController.editInventoryView));
 router.post('/edit', utilities.handleErrors(invController.editInventoryView));
+router.post("/update/", invController.updateInventory)
 
 router.get('/delete/:inv_id', utilities.handleErrors(invController.buildDeleteConfirmView));
 router.post('/delete', utilities.handleErrors(invController.deleteInventory));

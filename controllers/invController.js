@@ -110,11 +110,11 @@ invCont.buildAddInventory = async function (req, res, next) {
 
 invCont.buildDeleteConfirm = async function (req, res, next) {
   let nav = await utilities.getNav()
-  
+
   res.render("./inventory/delete-confirm", {
     title: "Delete Vehicle",
     nav,
-    
+
   })
 }
 /* ***************************
@@ -142,12 +142,12 @@ invCont.deleteView = async function (req, res, next) {
 /* ****************************************
 *  Process Classification
 * *************************************** */
-invCont.addClassification = async function (req, res, next){
+invCont.addClassification = async function (req, res, next) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body
 
   const addClassificationResult = await invModel.addClassification(
-   classification_name
+    classification_name
   )
 
   if (addClassificationResult) {
@@ -157,7 +157,7 @@ invCont.addClassification = async function (req, res, next){
     res.status(201).render("inventory/add-classification", {
       title: "Add new Vehicle Classification",
       nav,
-    
+
     })
   } else {
     req.flash("notice", "Provide a correct clasification name.")
@@ -312,7 +312,17 @@ invCont.updateInventory = async function (req, res, next) {
   const { inv_id, classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body
 
   const updateResult = await invModel.updateInventory(
-    inv_id, classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
   )
 
   if (updateResult) {
@@ -320,7 +330,7 @@ invCont.updateInventory = async function (req, res, next) {
       "notice",
       `The vehicle ${inv_make} ${inv_model} was successfully updated.`
     )
-    res.status(200).redirect(`/inv/details/${inv_id}`)
+    res.status(200).redirect(`/inv/management/`)
   } else {
     req.flash("notice", "Sorry, the vehicle could not be updated. Please try again.")
     const classificationSelect = await utilities.buildClassificationList(classification_id);
@@ -329,20 +339,23 @@ invCont.updateInventory = async function (req, res, next) {
       nav,
       classificationSelect,
       errors: null,
-      inv_id,
       inv_make,
       inv_model,
-      inv_year,
       inv_description,
       inv_image,
       inv_thumbnail,
       inv_price,
+      inv_year,
       inv_miles,
       inv_color,
-      classification_id
+      classification_id,
+      inv_id,
     })
   }
 };
+
+
+
 
 
 module.exports = invCont;
