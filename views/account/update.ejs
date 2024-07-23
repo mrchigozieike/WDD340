@@ -3,17 +3,11 @@
     <% } else {
       res.redirect('/')
     } %>
-
-<%- messages() %>
-
-<% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %>
-
+  
+  <%- messages() %>
+  
+  <div class="account-management">
+  <h2>Welcome <%- user.name %></h2>
   <div class="account-form">
     <form id="updateForm" action="/account/updateAccount" method="post">
         <fieldset>

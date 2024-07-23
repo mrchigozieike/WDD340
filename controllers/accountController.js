@@ -59,21 +59,6 @@ async function buildAccountManagement(req, res, next) {
 }
 
 
-/* ****************************************
- *  Deliver Update Account view
- * *************************************** */
-async function buildAccountManagement(req, res, next) {
-  try {
-      let nav = await utilities.getNav();
-      res.render("account/update", {
-          title: "Edit Account",
-          nav,
-          errors: null,
-      });
-  } catch (error) {
-      next(error);
-  }
-}
 
 
 /* ****************************************
@@ -234,7 +219,7 @@ async function accountLogout(req, res, next) {
  * *************************************** */
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav(); // Assuming you have a function to get navigation data
-  res.render('account/management', {
+  res.render('account/update', {
     title: 'Account Management',
     nav,
   });

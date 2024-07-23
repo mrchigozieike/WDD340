@@ -106,13 +106,29 @@ textarea:required.valid {
   text-transform: uppercase;
 }
 
+/* General styling for the header */
+#top-header {
+  background-color: #f8f9fa; /* Light background color */
+  padding: 10px 20px; /* Padding around the header */
+  display: flex; /* Flexbox for layout */
+  justify-content: space-between; /* Space between site name and tools */
+  align-items: center; /* Center items vertically */
+  border-bottom: 1px solid #ddd; /* Bottom border for separation */
+}
 
+/* Styling for the site name */
+.siteName {
+  font-size: 24px; /* Larger font size for site name */
+  font-weight: bold; /* Bold font weight */
+}
 
+.siteName a {
+  color: #007bff; /* Link color */
+  text-decoration: none; /* Remove underline */
+}
 
-
-
-.home-link h1 {
-  margin: 0;
+.siteName a:hover {
+  text-decoration: underline; /* Underline on hover */
 }
 
 nav {

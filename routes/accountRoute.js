@@ -21,10 +21,14 @@ router.get("/account", utilities.handleErrors(accountController.buildAccountMana
 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
 
+// Deliver Account Management View
+router.get("/update", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement));
+
+
 //Process the registration data
 router.post(
     "/register",
-   regValidate.registrationRules(),
+    regValidate.registrationRules(),
     regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
 )
@@ -36,6 +40,23 @@ router.post(
     regValidate.loginRules(),
     regValidate.checkLoginData,
     utilities.handleErrors(accountController.accountLogin))
+
+// Process the update account data
+router.post(
+    "/updateAccount",
+    regValidate.updateAccountRules(),
+    regValidate.checkUpdateAccountData,
+    utilities.handleErrors(accountController.updateAccount)
+);
+
+
+// Process the update password data
+router.post(
+    "/updatePassword",
+    regValidate.updatePasswordRules(),
+    regValidate.checkUpdatePasswordData,
+    utilities.handleErrors(accountController.updatePassword)
+);
 
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 router.post("/register", utilities.handleErrors(accountController.registerAccount))
