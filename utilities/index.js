@@ -1,14 +1,13 @@
 const invModel = require("../models/inventory-model")
-const utilities = {}
+const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
-
 
 
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
-utilities.getNav = async function (req, res, next) {
+Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
@@ -34,13 +33,12 @@ utilities.getNav = async function (req, res, next) {
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
-utilities.handleErrors = utilities => (req, res, next) => Promise.resolve(utilities(req, res, next)).catch(next)
-utilities.handleErrors = (utilities) => (req, res, next) => { Promise.resolve(utilities(req, res, next)).catch(next) }
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
-utilities.buildClassificationGrid = async function (data) {
+Util.buildClassificationGrid = async function (data) {
   let grid
   if (data.length > 0) {
     grid = '<ul id="inv-display">'
@@ -76,7 +74,7 @@ utilities.buildClassificationGrid = async function (data) {
  ************************** */
 
 // Function to build HTML view for a single inventory item detail
-utilities.buildInventoryDetailView = function (vehicle) {
+Util.buildInventoryDetailView = function (vehicle) {
   let view = '';
 
   if (vehicle.length > 0) {
@@ -125,7 +123,7 @@ utilities.buildInventoryDetailView = function (vehicle) {
   return view;
 };
 
-utilities.buildClassificationList = async function (classification_id = null) {
+Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
   let classificationList =
     '<select name="classification_id" id="classificationList" required>'
@@ -145,7 +143,7 @@ utilities.buildClassificationList = async function (classification_id = null) {
 }
 
 
-utilities.buildInventoryList = async function (inv_id = null) {
+Util.buildInventoryList = async function (inv_id = null) {
   let data = await invModel.getInventories()
   let inventoryList =
     '<select name="inv_id" id="inventoryList" required>'
@@ -170,7 +168,7 @@ utilities.buildInventoryList = async function (inv_id = null) {
  ************************** */
 
 // Function to build HTML view for a single inventory item detail
-utilities.buildVehicleDetails = function (vehicle) {
+Util.buildVehicleDetails = function (vehicle) {
   let view = '';
 
   if (vehicle.length > 0) {
@@ -230,7 +228,7 @@ utilities.buildVehicleDetails = function (vehicle) {
 /* ****************************************
 * Middleware to check token validity
 **************************************** */
-utilities.checkJWTToken = (req, res, next) => {
+Util.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt,
@@ -252,7 +250,7 @@ utilities.checkJWTToken = (req, res, next) => {
 
 
 
-utilities.checkAuthorization = (req, res, next) => {
+Util.checkAuthorization = (req, res, next) => {
   if (res.locals.loggedin && 
     ((res.locals.accountData.account_type == "Admin")
     || (res.locals.accountData.account_type == "Employee"))) {
@@ -266,7 +264,7 @@ utilities.checkAuthorization = (req, res, next) => {
 /**************
  * Build header Login/Logout
  *************/
-utilities.getTools = (req) =>{
+Util.getTools = (req) =>{
   if(req.cookies.jwt){
       try{
           const cookieData = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
@@ -284,11 +282,20 @@ utilities.getTools = (req) =>{
       return html;
   }
 }
+async function getClassifications() {
+  try {
+    const result = await pool.query('SELECT * FROM public.classification ORDER BY classification_name');
+    return result.rows;
+  } catch (error) {
+    console.error('Error executing query:', error);
+    throw new Error('Database query failed');
+  }
+}
 
 /**************
 * Authorization only to Employee and Admin accounts
 *************/
-utilities.authorizedAccounts = (req, res, next) =>{
+Util.authorizedAccounts = (req, res, next) =>{
   if(req.cookies.jwt){
       try{
           const cookieData = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
@@ -309,4 +316,57 @@ utilities.authorizedAccounts = (req, res, next) =>{
   }
 }
 
-module.exports = utilities;
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+
+ 
+/* **************************************
+* Build The New Review Display
+* ************************************ */
+// Define an asynchronous function to build the HTML structure for displaying reviews
+Util.addNewReview = async function(data) {
+  let review;
+
+  // Check if there are any reviews in the data
+  if (data.length > 0) {
+    // Start building the review HTML structure
+    review = '<div id="item-display">';
+
+    // Iterate over each review item
+    data.forEach(item => {
+      // Append each review's details to the review HTML structure
+      review += `<div id="description">
+        <div class="vertical-line"></div>
+        <div id="item-description">
+          <h1>Customer Reviews</h1>
+          <h2>${item.review_id}</h2>
+          <p>${new Intl.DateTimeFormat('en-US').format(new Date(item.review_date))}</p>
+          <p>${item.review_text}</p>
+        </div>
+      </div>`;
+    });
+
+    // Close the review HTML structure
+    review += '</div>';
+  } else {
+    // If there are no reviews, display a notice
+    review = '<p class="notice"> Sorry, there are no reviews.</p>';
+  }
+
+  // Log the review HTML structure to the console for debugging purposes
+  console.log(review);
+
+  // Return the review HTML structure
+  return review;
+}
+
+module.exports = Util;

@@ -20,35 +20,6 @@ const static = require("./routes/static");
 const session = require("express-session");
 const app = express();
 
-// Serve favicon
-app.get('/favicon.ico', (req, res) => res.status(204).end());
-
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs");
-app.use(expressLayouts);
-app.set("layout", "./layouts/layout"); // not at views root
-
-/* ***********************
- * Static Files
- *************************/
-app.use(express.static('public'));
-
-/* ***********************
- * Middleware
- *************************/
-// Express Messages Middleware
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-app.use(cookieParser())
-
-app.use(require('connect-flash')());
-app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
-  next();
-});
-
 
 /* ***********************
  * Middleware
@@ -63,6 +34,41 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
+
+//middleware to get user information
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+// Login Activity
+app.use(cookieParser())
+
+// login process activity
+app.use(utilities.checkJWTToken)
+
+/* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout") // not at views root
+
+
+/* ***********************
+ * Static Files
+ *************************/
+app.use(express.static('public'));
 
 app.use(utilities.checkJWTToken)
 /* ***********************
@@ -102,12 +108,6 @@ app.use(async (err, req, res, next) => {
   })
 })
 
-// Express Messages Middleware
-app.use(require('connect-flash')())
-app.use(function(req, res, next){
-  res.locals.messages = require('express-messages')(req, res)
-  next()
-})
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file

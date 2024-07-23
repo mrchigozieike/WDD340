@@ -1,65 +1,27 @@
-const pool = require("../database/")
+const pool = require('../database/')
 
-const express = require('express');
-const router = express.Router();
-const utilities = require('../utilities/');
-
-router.get('/', utilities.handleErrors(buildLogin));
-
-
-/* ****************************************
- * Deliver login view
- * *************************************** */
-async function buildLogin(req, res, next) {
-  let nav = await utilities.getNav(); // Assuming you have a function to get navigation data
-  res.render('account/login', {
-    title: 'Login',
-    nav,
-  });
-}
 /* *****************************
 *   Register new account
 * *************************** */
 async function registerAccount(account_firstname, account_lastname, account_email, account_password){
-  try {
-    const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, 'Client') RETURNING *"
-    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
-  } catch (error) {
-    return error.message
+    try {
+      const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, 'Client') RETURNING *"
+      return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
+    } catch (error) {
+      return error.message
+    }
   }
-}
-/* **********************
+
+  /* **********************
  *   Check for existing email
  * ********************* */
-async function checkExistingEmail(account_email) {
+async function checkExistingEmail(account_email){
   try {
     const sql = "SELECT * FROM account WHERE account_email = $1"
     const email = await pool.query(sql, [account_email])
     return email.rowCount
   } catch (error) {
     return error.message
-  }
-}
-
-
-
-
-/* ***************************
- *  Get all inventory items and classification_name by classification_id
- * ************************** */
-async function getInventoryByClassificationId(classification_id) {
-  try {
-    const data = await pool.query(
-      `SELECT * FROM public.inventory AS i 
-      JOIN public.classification AS c 
-      ON i.classification_id = c.classification_id 
-      WHERE i.classification_id = $1`,
-    
-      [classification_id]
-    )
-    return data.rows
-  } catch (error) {
-    console.error("getclassificationsbyid error " + error)
   }
 }
 
@@ -77,4 +39,42 @@ async function getAccountByEmail (account_email) {
   }
 }
 
-module.exports = {router, registerAccount, checkExistingEmail, getInventoryByClassificationId, getAccountByEmail }
+/* *****************************
+* Return account data using account id
+* ***************************** */
+async function getAccountById (account_id) {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_id = $1',
+      [account_id])
+    return result.rows[0]
+  } catch (error) {
+    return error.message
+  }
+}
+
+
+async function updateAccount(account_firstname, account_lastname, account_email, account_id) {
+  try {
+    const result = await pool.query(
+      'UPDATE account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4 RETURNING *',
+      [account_firstname, account_lastname, account_email, account_id])
+    return result.rows[0]
+  } catch (error) {
+    return  error.message
+  }
+}
+
+async function updatePassword(account_password, account_id) {
+  try {
+    const result = await pool.query(
+      'UPDATE account SET account_password = $1 WHERE account_id = $2 RETURNING *',
+      [account_password, account_id])
+    return result.rows[0]
+  } catch (error) {
+    return new Error("No matching email found")
+  }
+}
+
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword }
