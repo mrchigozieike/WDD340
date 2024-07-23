@@ -17,7 +17,12 @@
     
     <table id="inventoryDisplay"></table>
     
-
+    <% if (user.userType == "Admin" || user.userType == "Employee") { %>
+      <h3>Inventory Management</h3>
+      <a href="/inv/approve">Approve Inventory</a>
+      <% } %>
+      
+    </div>
     <noscript>Javascript must be enabled</noscript>
     <script src="../../js/inventory.js"></script>
 
