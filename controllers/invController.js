@@ -2,6 +2,72 @@ const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 const invCont = {}
 
+// Approve or reject a classification
+invCont.processClassificationStatus = async function (req, res, next) {
+  const { classification_id, status } = req.body;
+  try {
+    const result = await invModel.updateClassificationStatus(classification_id, status);
+    req.flash("notice", `Classification ${result.classification_name} status updated successfully.`);
+    res.redirect("/inv/management");
+  } catch (error) {
+    console.error('Error processing classification status:', error);
+    req.flash("notice", "Error updating classification status.");
+    res.redirect("/inv/management");
+  }
+};
+
+// Approve or reject an inventory item
+invCont.processInventoryStatus = async function (req, res, next) {
+  const { inv_id, status } = req.body;
+  try {
+    const result = await invModel.updateInventoryStatus(inv_id, status);
+    req.flash("notice", `Inventory item ${result.inv_make} ${result.inv_model} status updated successfully.`);
+    res.redirect("/inv/management");
+  } catch (error) {
+    console.error('Error processing inventory status:', error);
+    req.flash("notice", "Error updating inventory status.");
+    res.redirect("/inv/management");
+  }
+};
+invCont.buildUnapprovedView = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const unapprovedClassifications = await invModel.getUnapprovedClassifications();
+    const unapprovedInventories = await invModel.getUnapprovedInventories();
+    
+    res.render("./inventory/unapproved", {
+      title: "Pending Approvals",
+      nav,
+      unapprovedClassifications,
+      unapprovedInventories,
+    });
+  } catch (error) {
+    console.error('Error fetching unapproved items:', error);
+    res.status(500).send("Error fetching unapproved items.");
+  }
+};
+
+invCont.buildUnapprovedView = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const unapprovedClassifications = await invModel.getUnapprovedClassifications();
+    const unapprovedInventories = await invModel.getUnapprovedInventories();
+    
+    res.render("./inventory/unapproved", {
+      title: "Pending Approvals",
+      nav,
+      unapprovedClassifications,
+      unapprovedInventories,
+    });
+  } catch (error) {
+    console.error('Error fetching unapproved items:', error);
+    res.status(500).send("Error fetching unapproved items.");
+  }
+};
+
+
+
+
 /* ***************************
  *  Build inventory by classification view
  * ************************** */

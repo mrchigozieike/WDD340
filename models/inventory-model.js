@@ -1,5 +1,57 @@
 const pool = require("../database/")
 
+// Update the classification status
+async function updateClassificationStatus(classification_id, status) {
+  try {
+    const query = 'UPDATE public.classification SET approved = $1 WHERE classification_id = $2 RETURNING *';
+    const result = await pool.query(query, [status, classification_id]);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error updating classification status:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+// Update the inventory status
+async function updateInventoryStatus(inv_id, status) {
+  try {
+    const query = 'UPDATE public.inventory SET is_approved = $1 WHERE inv_id = $2 RETURNING *';
+    const result = await pool.query(query, [status, inv_id]);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error updating inventory status:', error);
+    throw new Error('Database query failed');
+  }
+}
+
+
+// Method to get unapproved classifications
+async function getUnapprovedClassifications() {
+  const query = 'SELECT * FROM public.classification WHERE approved = FALSE ORDER BY classification_name';
+  try {
+    const result = await pool.query(query);
+    return result.rows;
+  } catch (error) {
+    console.error('Error executing query:', error);
+    throw new Error('Database query failed');
+  }
+};
+
+// Method to get unapproved inventory items
+async function getUnapprovedInventories() {
+  const query = 'SELECT * FROM public.inventory WHERE is_approved = FALSE ORDER BY inv_make, inv_model';
+  try {
+    const result = await pool.query(query);
+    return result.rows;
+  } catch (error) {
+    console.error('Error executing query:', error);
+    throw new Error('Database query failed');
+  }
+};
+
+
+
+
 /* ***************************
  *  Get all classification data
  * ************************** */
@@ -138,4 +190,4 @@ async function updateInventory(
   }
 }
 
-module.exports = {getVehicleDetails, updateInventory, deleteInventoryById, addInventory, getClassifications, getInventoryByClassificationId, getInventoryById, addClassification };
+module.exports = {getUnapprovedClassifications, getUnapprovedInventories, getVehicleDetails, updateInventory, deleteInventoryById, addInventory, getClassifications, getInventoryByClassificationId, getInventoryById, addClassification };

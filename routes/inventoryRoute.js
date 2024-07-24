@@ -28,4 +28,13 @@ router.get('/delete/:inv_id', utilities.handleErrors(invController.buildDeleteCo
 router.post('/delete', utilities.handleErrors(invController.deleteInventory));
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Route to display unapproved items for admin
+router.get('/unapproved', invController.buildUnapprovedView);
+// Route for processing classification status
+router.post('/classification/status', invController.processClassificationStatus);
+
+// Route for processing inventory status
+router.post('/inventory/status', invController.processInventoryStatus);
+
 module.exports = router;
