@@ -191,4 +191,4 @@ async function updateInventory(
   }
 }
 
-module.exports = {updateInventoryStatus, updateClassificationStatus, getUnapprovedClassifications, getUnapprovedInventories, getVehicleDetails, updateInventory, deleteInventoryById, addInventory, getClassifications, getInventoryByClassificationId, getInventoryById, addClassification };
+module.exports = {updateClassificationStatus, getUnapprovedClassifications, getUnapprovedInventories, getVehicleDetails, updateInventory, deleteInventoryById, addInventory, getClassifications, getInventoryByClassificationId, getInventoryById, addClassification };
