@@ -77,4 +77,15 @@ async function updatePassword(account_password, account_id) {
 }
 
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword }
+async function updateClassificationStatus(classificationId, newStatus) {
+  try {
+    const sql = 'UPDATE classification SET status = $1 WHERE classification_id = $2 RETURNING *';
+    const result = await pool.query(sql, [newStatus, classificationId]);
+    return result.rows[0];
+  } catch (error) {
+    throw new Error(`Error updating classification status: ${error.message}`);
+  }
+}
+
+
+module.exports = { updateClassificationStatus, registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword }
