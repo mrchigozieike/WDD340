@@ -17,6 +17,7 @@ async function updateInventoryStatus(inv_id, status) {
   try {
     const query = 'UPDATE public.inventory SET is_approved = $1 WHERE inv_id = $2 RETURNING *';
     const result = await pool.query(query, [status, inv_id]);
+    console.log(result)
     return result.rows[0];
   } catch (error) {
     console.error('Error updating inventory status:', error);

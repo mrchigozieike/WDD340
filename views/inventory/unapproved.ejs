@@ -1,51 +1,61 @@
-<h3>Unapproved Classifications</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Classification Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% unapprovedClassifications.forEach(function(classification) { %>
+<div class="form-container">
+  <h3>Unapproved Classifications</h3>
+  <table>
+    <thead>
       <tr>
-        <td><%= classification.classification_name %></td>
-        <td>
-          <form action="/inv/classification/status" method="post">
-            <input type="hidden" name="classification_id" value="<%= classification.classification_id %>">
-            <button type="submit" name="status" value="true">Approve</button>
-            <button type="submit" name="status" value="false">Reject</button>
-          </form>
-        </td>
+        <th>Classification Name</th>
+        <th>Action</th>
       </tr>
-    <% }); %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% unapprovedClassifications.forEach(function(classification) { %>
+        <tr>
+          <td>
+            <%= classification.classification_name %>
+          </td>
+          <td>
+            <form action="/inv/classification/status" method="post">
+              <input type="hidden" name="classification_id" value="<%= classification.classification_id %>">
+              <button type="submit" name="status" value="true">Approve</button>
+              <button type="submit" name="status" value="false">Reject</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
 
-<h3>Unapproved Inventory Items</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Make</th>
-      <th>Model</th>
-      <th>Year</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% unapprovedInventories.forEach(function(item) { %>
+  <h3>Unapproved Inventory Items</h3>
+  <table>
+    <thead>
       <tr>
-        <td><%= item.inv_make %></td>
-        <td><%= item.inv_model %></td>
-        <td><%= item.inv_year %></td>
-        <td>
-          <form action="/inv/inventory/status" method="post">
-            <input type="hidden" name="inv_id" value="<%= item.inv_id %>">
-            <button type="submit" name="status" value="true">Approve</button>
-            <button type="submit" name="status" value="false">Reject</button>
-          </form>
-        </td>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Action</th>
       </tr>
-    <% }); %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% unapprovedInventories.forEach(function(item) { %>
+        <tr>
+          <td>
+            <%= item.inv_make %>
+          </td>
+          <td>
+            <%= item.inv_model %>
+          </td>
+          <td>
+            <%= item.inv_year %>
+          </td>
+          <td>
+            <form action="/inv/inventory/status" method="post">
+              <input type="hidden" name="inv_id" value="<%= item.inv_id %>">
+              <button type="submit" name="status" value="true">Approve</button>
+              <button type="submit" name="status" value="false">Reject</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
+</div>
