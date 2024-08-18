@@ -10,14 +10,11 @@ body {
 
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  color: #333;
+  padding: 0;  
   background-image: url('/images/site/small_check.jpg');
   background-repeat: no-repeat;
   /* Prevent image repetition */
 }
-
-
 
 .form-container {
   max-width: 500px;
@@ -83,7 +80,6 @@ textarea:required.valid {
 }
 
 .form-button {
-
   padding: 5px;
   margin-top: 10px;
   background-color: #6b6d6c;
@@ -121,68 +117,124 @@ textarea:required.valid {
   font-size: 24px; /* Larger font size for site name */
   font-weight: bold; /* Bold font weight */
 }
-
 .siteName a {
-  color: #007bff; /* Link color */
+  color: #8e793e; /* Link color */
   text-decoration: none; /* Remove underline */
 }
 a{
+  color: #8e793e; /* Link color */
   text-decoration: none; /* Remove underline */
 }
-
 .siteName a:hover {
+  color: #231F20;
   text-decoration: underline; /* Underline on hover */
 }
 
+
+
+
+/* Navigation container styling */
 nav {
-  display: flex;
-  flex-direction: row;
-  background-color: #333;
-  color: #fff;
-  width: 99%;
-  border-radius: 5px;
-  margin-top: 30px;
+  text-transform: uppercase; /* Change text to all caps */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Arrange items in a row */
+  background-color: #fff; /* White background for the navigation bar */
+  width: 99%;  /* Slightly reduced width to avoid edge overflow */
+  margin-top: 30px; /* Add some space above the navigation */
 }
 
+/* Reset default list styles */
 ul {
-  list-style-type: none;
-  /* Remove default list styling */
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
 }
 
+/* Styling for the navigation list */
 nav ul {
-  display: flex;
-  /* Use flexbox for layout */
-  justify-content: space-between;
-  /* Space items evenly */
-  background-color: #333;
-  /* Background color for the navigation bar */
-  width: 100%;
+  background-color: rgba(142, 121, 62, 0.20); /* 0.5 is the opacity (20% transparent) */  
+  font-family: Roboto Mono; /* Set font to Roboto Mono */
+  font-size: 18px; /* Set font size */
+  font-weight: 700; /* Set font weight to bold */
+  color: 8e793e ; /* Gray text color */
+  width: 700px; /* Set a fixed width */
+  margin: 0 auto; /* Center the navigation bar */
+
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Evenly distribute items */
+  background-color: #fff; /* White background for the list */
+  width: 100%; /* Set width to full */
 }
 
-
+/* Styling for each list item */
 nav li {
-  margin: 0 1rem;
+  margin: 0 1rem; /* Add space between list items */
+  display: inline-block; /* Display items in a row */
+  position: relative; /* Enable positioning for pseudo-elements */
 }
 
+/* Styling for links within list items */
 nav li a {
-  color: #fff;
-  text-decoration: none;
+  color: #EAEAEA; /* Dark gray text color */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Display links in a row */
+  position: relative; /* Enable positioning for pseudo-elements */
+  line-height: 2.5; /* Set line height for vertical spacing */
+  padding: 0 20px; /* Add horizontal padding */
 }
 
-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
+/* Active state styling */
 nav .active {
-  background-color: rgb(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2); /* Slightly transparent black background */
 }
 
-/* Larger Screen Styles */
-@media (min-width: 768px) {
-  .navbar-links li {
-    margin: 0 2rem;
-  }
+/* Hover effect for list items */
+nav li:hover::before,
+nav li:hover::after {
+  background:#AD974F; /* Change background to light salmon on hover */
 }
+
+/* Pseudo-elements before and after each list item */
+nav li::before,
+nav li::after {
+  content: ''; /* Empty content for the pseudo-elements */
+  position: absolute; /* Position relative to the parent list item */
+  left: 0; /* Align to the left */
+  height: 50%; /* Set height to half of the parent */
+  width: 100%; /* Set width to full */
+  background: 	#231F20; /* White background */
+  border-left: 2px solid #EAEAEA; /* Add left border */
+  border-right: 2px solid #EAEAEA;  /* Add right border */
+  
+}
+
+/* Styling for the top pseudo-element */
+nav li::before {
+  top: 5px; /* Position slightly above the list item */
+  transform: skew(30deg); /* Skew the element for visual effect */
+  border-top: 2px solid #666; /* Add top border */
+}
+
+/* Styling for the bottom pseudo-element */
+nav li::after {
+  
+  bottom: -5px;  /* Position slightly below the list item */
+  transform: skew(-30deg); /* Skew the element in the opposite direction */
+  border-bottom: 2px solid #666; /* Add bottom border */
+}
+
+/* Special styling for the first list item */
+nav li:first-child {
+  
+  box-sizing: content-box; /* Adjust box sizing */
+}
+
+/* Adjust the positioning of pseudo-elements for the first list item */
+nav li:first-child::before,
+nav li:first-child::after {
+  left: 5px; /* Move pseudo-elements slightly to the right */
+}
+
 
 .wrapper {
   background-color: white;
@@ -190,7 +242,7 @@ nav .active {
   margin-top: 30px;
   margin-left: 55px;
   margin-right: 55px;
-  border: 5px solid rgb(9, 216, 231);
+  border: 5px solid #8e798e(9, 216, 231);
   border-radius: 10px;
 }
 
@@ -200,11 +252,10 @@ nav .active {
 
 
 .advert {
-
-  background-color: rgba(228, 235, 235, 0.849);
+  background-color: rgba(142, 121, 62, 0.5); /* 0.5 is the opacity (50% transparent) */ 
   padding: 20px;
-  color: rgb(8, 114, 114);
   width: 140px;
+  border-radius: 10px;
   position: absolute;
   /* Adjust top, right, bottom, left as needed */
   z-index: 1;
@@ -213,15 +264,13 @@ nav .active {
 
 .advert a {
   padding: 10px;
-  background-color: rgb(45, 215, 221);
+  background-color:#8e793e;
   border-radius: 10px;
-  color: black;
+  color: #EAEAEA;
   list-style: none;
   font-family: "DM Serif Display", serif;
   font-weight: 400;
   font-style: normal;
-
-
 }
 
 
@@ -273,10 +322,16 @@ h2 {
   max-width: 100px;
   height: auto;
   margin-bottom: 0.5rem;
+  border-radius: 10px;
+  opacity: 0.9;
+  transition: 0.5s;
 }
 
-
-.upgrades {
+.upgrade-item:hover > img {
+  opacity: 1;
+  transform: scale(1.4);
+}
+.upgrades, .items {
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -361,7 +416,7 @@ form-group {
 }
 
 .vehicle-buttons :hover {
-  background-color: green;
+  background-color: #8e793e;
 }
 
 .vehicle-mp {
@@ -378,17 +433,49 @@ h5 {
 .estimate {
   margin-top: -50px;
   padding-left: 220px;
-  color: green;
+  color: #8e793e;
 }
 
 .divine {
-  margin: 200px;
   display: inline-block;
-  width: 250px;
+  width: auto;
   margin: 2%;
   padding: 1rem;
-  color: #a80808;
   border-radius: 5px;
+}
+
+.divine li{
+  background: rgba( 255, 255, 255, 0.15 );
+  padding: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+}
+.namePrice a{ 
+  padding: 0; 
+  color: #8e793e;
+
+}
+.namePrice h3{
+  padding: 0;
+}
+.namePrice span{
+  display: grid;
+  place-items: center;
+}
+.divine img {
+  width: 100%;
+  max-width: 150px;
+  height: 100px;  
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  opacity: 0.9;
+  transition: 0.5s;
+}
+
+.divine img:hover {
+  opacity: 1;
+  transform: scale(1.4);
 }
 
 .vehicle-detail {
@@ -450,7 +537,7 @@ nav li {
 }
 
 /* Media Query for wider than mobile viewports. Breakpoint should be based upon the design and content and use em units to be relative to the user's font size versus fixed with pixels.*/
-@media only screen and (min-width: 40em) {
+@media only screen and (min-width: 70em) {
   nav {
     display: flex;
   }
@@ -467,5 +554,5 @@ nav li {
 
   #menu {
     display: none;
-  }
+  }  
 }

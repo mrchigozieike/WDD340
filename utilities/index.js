@@ -176,20 +176,13 @@ Util.buildVehicleDetails = function (vehicle) {
     vehicle.forEach(vehicle => {
       view += '<div class="vehicle-detail">';
       view += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" class="vehicle-image">`;
-
       view += '</div>'; // close vehicle-detail
-
-
       view += '<div class="vehicle-detail-left">';
       view += `<h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>`;
       view += '<div class="vehicle-pm">';
       view += `<h2><strong>No Haggle-Price<sup>1</sup>:&nbsp; &nbsp; $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</strong></h2>`;
       view += `<p><strong>Mileage</strong></p>`;
       view += '<div class="vehicle-mp">';
-
-
-
-
       view += `<p><strong>${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</strong></p>`;
       view += `<p>ESTIMATE PAYMENTS</p>`;
       view += '</div>'; // close vehicle-mp
