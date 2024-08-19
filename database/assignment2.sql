@@ -91,12 +91,13 @@ SET account_type = 'Admin'
 WHERE account_email = 'tony@starkent.com';
 DELETE FROM public.account
 WHERE account_email = 'tony@starkent.com';
+
 -- Insert data into classification table
 INSERT INTO public.classification (classification_name)
 VALUES ('custom'),
-  ('Sport'),
-  ('SUV'),
+  ('Sport'),  
   ('Truck'),
+  ('SUV'),
   ('Sedan');
 -- Data for table `inventory`
 INSERT INTO public.inventory (

@@ -68,8 +68,8 @@ WHERE account_email = 'tony@starkent.com';
 
 -- Insert data into classification table
 INSERT INTO public.classification (classification_name) VALUES 
-('Sport'), 
-('custom'),
+('Custom'), 
+('Sport'),
 ('SUV'), 
 ('Truck'), 
 ('Sedan');
@@ -88,7 +88,15 @@ INSERT INTO public.inventory (
     classification_id
 )
 VALUES 
-    ('Chevy', 'Camaro', '2018', 'If you want to look cool this is the car you need! This car has great performance at an affordable price. Own it today!', '/images/camaro.jpg', '/images/camaro-tn.jpg', 25000, 101222, 'Silver', 2),
+    (
+        'Chevy',
+         'Camaro',
+          '2018',
+           'If you want to look cool this is the car you need! This car has great performance at an affordable price. Own it today!', 
+           '/images/camaro.jpg', 
+           '/images/camaro-tn.jpg',
+            25000, 101222, 
+            'Silver', 2),
     ('Batmobile', 'Custom', '2007', 'Ever want to be a superhero? now you can with the batmobile. This car allows you to switch to bike mode allowing you to easily maneuver through traffic during rush hour.', '/images/batmobile.jpg', '/images/batmobile-tn.jpg', 65000, 29887, 'Black', 1),
     ('FBI', 'Surveillance Van', '2016', 'Do you like police shows? You will feel right at home driving this van, comes complete with surveillance equipment for an extra fee of $2,000 a month.', '/images/survan.jpg', '/images/survan-tn.jpg', 20000, 19851, 'Brown', 1),
     ('Dog', 'Car', '1997', 'Do you like dogs? Well this car is for you straight from the 90s from Aspen, Colorado we have the original Dog Car complete with fluffy ears.', '/images/dog-car.jpg', '/images/dog-car-tn.jpg', 35000, 71632, 'White', 1),
