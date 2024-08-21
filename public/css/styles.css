@@ -2,111 +2,94 @@
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Ensure padding and borders are included in the element's total width and height */
 }
 
-/* Mobile First Styles */
-body {
-
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;  
-  background-image: url('/images/site/small_check.jpg');
-  background-repeat: no-repeat;
-  /* Prevent image repetition */
+.delorean{
+  padding-left: 90px;
 }
-
 .form-container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-  font-size: .85rem;
-  border-radius: 10px;
+  max-width: 500px; /* Maximum width of the form container */
+  margin: 0 auto; /* Center the form container horizontally */
+  padding: 10px; /* Padding inside the container */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center; /* Center text alignment */
+  font-size: .85rem; /* Font size */
 }
 
 .form-container p {
-  margin: 8px auto;
+  margin: 8px auto; /* Margin for paragraphs inside the form container */
 }
 
 .form-container label {
-  font-weight: bold;
+  font-weight: bold; /* Bold text for form labels */
 }
 
 .form-group {
-  margin-bottom: 10px;
-  
+  margin-bottom: 10px; /* Margin below each form group */
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: .85rem;
+  display: block; /* Block display for labels to stack above inputs/selects */
+  margin-bottom: 5px; /* Space below each label */
+  font-size: .85rem; /* Font size for labels */
 }
 
-.form-group select {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box;
-}
-
+.form-group select,
 .form-group input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box;
+  width: 100%; /* Full width for form elements */
+  padding: 5px; /* Padding inside form elements */
+  border: 1px solid #ccc; /* Border for form elements */
+  border-radius: 3px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding and border in width */
 }
 
 .form-group input:focus:invalid,
 textarea:focus:invalid {
-  background-color: rgb(245, 255, 188);
-  background-image: url("/images/site/invalid.png");
-  background-size: 16px 16px;
-  background-position: right top;
-  background-repeat: no-repeat;
+  background-color: rgb(245, 255, 188); /* Background color for invalid fields */
+  background-image: url("/images/site/invalid.png"); /* Image indicating invalid input */
+  background-size: 16px 16px; /* Size of the background image */
+  background-position: right top; /* Position of the background image */
+  background-repeat: no-repeat; /* Prevent image repetition */
 }
 
 .form-group input:required:valid,
 textarea:required.valid {
-  background-color: rgb(255, 255, 255);
-  background-image: url("/images/site/valid.png");
-  background-size: 16px 16px;
-  background-position: right top;
-  background-repeat: no-repeat;
+  background-color: rgb(255, 255, 255); /* Background color for valid fields */
+  background-image: url("/images/site/valid.png"); /* Image indicating valid input */
+  background-size: 16px 16px; /* Size of the background image */
+  background-position: right top; /* Position of the background image */
+  background-repeat: no-repeat; /* Prevent image repetition */
 }
 
 .form-button {
-  padding: 5px;
-  margin-top: 10px;
-  background-color: #6b6d6c;
-  color: whitesmoke;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: bold;
+  padding: 5px; /* Padding inside the button */
+  margin-top: 10px; /* Space above the button */
+  background-color: #6b6d6c; /* Background color for the button */
+  color: whitesmoke; /* Text color for the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size for the button text */
+  text-transform: uppercase; /* Uppercase text */
+  font-weight: bold; /* Bold text */
 }
 
 #togglePassword {
-  padding: 5px;
-  margin-top: 5px;
-  background-color: rgb(41, 39, 39);
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: .75rem;
-  text-transform: uppercase;
+  padding: 5px; /* Padding inside the password toggle button */
+  margin-top: 5px; /* Space above the button */
+  background-color: rgb(41, 39, 39); /* Background color for the button */
+  color: white; /* Text color for the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: .75rem; /* Font size for the button text */
+  text-transform: uppercase; /* Uppercase text */
 }
 
 /* General styling for the header */
 #top-header {
   background-color: #f8f9fa; /* Light background color */
   padding: 10px 20px; /* Padding around the header */
-  display: flex; /* Flexbox for layout */
+  display: flex; /* Flexbox layout for the header */
   justify-content: space-between; /* Space between site name and tools */
   align-items: center; /* Center items vertically */
   border-bottom: 1px solid #ddd; /* Bottom border for separation */
@@ -117,30 +100,29 @@ textarea:required.valid {
   font-size: 24px; /* Larger font size for site name */
   font-weight: bold; /* Bold font weight */
 }
+
 .siteName a {
   color: #8e793e; /* Link color */
-  text-decoration: none; /* Remove underline */
+  text-decoration: none; /* Remove underline from links */
 }
-a{
+
+a {
   color: #8e793e; /* Link color */
-  text-decoration: none; /* Remove underline */
+  text-decoration: none; /* Remove underline from links */
 }
+
 .siteName a:hover {
-  color: #231F20;
+  color: #231F20; /* Darker color on hover */
   text-decoration: underline; /* Underline on hover */
 }
 
-
-
-
 /* Navigation container styling */
 nav {
-  text-transform: uppercase; /* Change text to all caps */
-  display: flex; /* Use flexbox for layout */
-  flex-direction: row; /* Arrange items in a row */
+  text-transform: uppercase; /* Uppercase text */  
   background-color: #fff; /* White background for the navigation bar */
-  width: 99%;  /* Slightly reduced width to avoid edge overflow */
-  margin-top: 30px; /* Add some space above the navigation */
+  width: 99%; /* Slightly reduced width to avoid edge overflow */
+  margin-top: 40px; /* Add some space above the navigation */
+  padding-bottom: 50px;
 }
 
 /* Reset default list styles */
@@ -150,37 +132,22 @@ ul {
   margin: 0; /* Remove default margin */
 }
 
-/* Styling for the navigation list */
-nav ul {
-  background-color: rgba(142, 121, 62, 0.20); /* 0.5 is the opacity (20% transparent) */  
-  font-family: Roboto Mono; /* Set font to Roboto Mono */
-  font-size: 18px; /* Set font size */
-  font-weight: 700; /* Set font weight to bold */
-  color: 8e793e ; /* Gray text color */
-  width: 700px; /* Set a fixed width */
-  margin: 0 auto; /* Center the navigation bar */
-
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Evenly distribute items */
-  background-color: #fff; /* White background for the list */
-  width: 100%; /* Set width to full */
-}
 
 /* Styling for each list item */
-nav li {
-  margin: 0 1rem; /* Add space between list items */
-  display: inline-block; /* Display items in a row */
+nav li {  
+  width: 100px;
+  margin: 0 1rem; /* Space between list items */  
   position: relative; /* Enable positioning for pseudo-elements */
 }
 
 /* Styling for links within list items */
 nav li a {
-  color: #EAEAEA; /* Dark gray text color */
-  text-decoration: none; /* Remove underline */
+  color: #EAEAEA; /* Text color for links */
+  text-decoration: none; /* Remove underline from links */
   display: inline-block; /* Display links in a row */
   position: relative; /* Enable positioning for pseudo-elements */
-  line-height: 2.5; /* Set line height for vertical spacing */
-  padding: 0 20px; /* Add horizontal padding */
+  line-height: 2.5; /* Line height for vertical spacing */
+  padding: 0 20px; /* Horizontal padding */
 }
 
 /* Active state styling */
@@ -191,42 +158,37 @@ nav .active {
 /* Hover effect for list items */
 nav li:hover::before,
 nav li:hover::after {
-  background:#AD974F; /* Change background to light salmon on hover */
+  background: #AD974F; /* Change background on hover */
 }
 
 /* Pseudo-elements before and after each list item */
 nav li::before,
 nav li::after {
-  content: ''; /* Empty content for the pseudo-elements */
+  content: ''; /* Empty content for pseudo-elements */
   position: absolute; /* Position relative to the parent list item */
   left: 0; /* Align to the left */
-  height: 50%; /* Set height to half of the parent */
-  width: 100%; /* Set width to full */
-  background: 	#231F20; /* White background */
-  border-left: 2px solid #EAEAEA; /* Add left border */
-  border-right: 2px solid #EAEAEA;  /* Add right border */
-  
+  height: 50%; /* Height of half of the parent */
+  width: 100%; /* Full width */
+
 }
 
 /* Styling for the top pseudo-element */
 nav li::before {
   top: 5px; /* Position slightly above the list item */
   transform: skew(30deg); /* Skew the element for visual effect */
-  border-top: 2px solid #666; /* Add top border */
+  border-top: 2px solid #666; /* Top border */
 }
 
 /* Styling for the bottom pseudo-element */
 nav li::after {
-  
-  bottom: -5px;  /* Position slightly below the list item */
+  bottom: -5px; /* Position slightly below the list item */
   transform: skew(-30deg); /* Skew the element in the opposite direction */
-  border-bottom: 2px solid #666; /* Add bottom border */
+  border-bottom: 2px solid #666; /* Bottom border */
 }
 
 /* Special styling for the first list item */
 nav li:first-child {
-  
-  box-sizing: content-box; /* Adjust box sizing */
+  box-sizing: content-box; /* Adjust box sizing for the first item */
 }
 
 /* Adjust the positioning of pseudo-elements for the first list item */
@@ -235,324 +197,319 @@ nav li:first-child::after {
   left: 5px; /* Move pseudo-elements slightly to the right */
 }
 
-
 .wrapper {
-  background-color: white;
-  padding-left: 10px;
-  margin-top: 30px;
-  margin-left: 55px;
-  margin-right: 55px;
-  border: 5px solid #8e798e(9, 216, 231);
-  border-radius: 10px;
+  background-color: white; /* White background for the wrapper */
+  padding-left: 10px; /* Padding on the left */
+  margin-top: 30px; /* Space above the wrapper */
+  margin-left: 55px; /* Left margin */
+  margin-right: 55px; /* Right margin */
+  border: 5px solid #8e798e; /* Border around the wrapper */
+  border-radius: 10px; /* Rounded corners */
 }
 
-.deloran {
+
+.container {
   width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  overflow: hidden;
 }
-
 
 .advert {
-  background-color: rgba(142, 121, 62, 0.5); /* 0.5 is the opacity (50% transparent) */ 
-  padding: 20px;
-  width: 140px;
-  border-radius: 10px;
-  position: absolute;
-  /* Adjust top, right, bottom, left as needed */
-  z-index: 1;
-  /* Control layering */
+  gap: 1.5rem;
+  color: hsl(60, 6%, 7%);
+  background-color: rgba(142, 121, 62, 0.1); /* Semi-transparent background */
+  max-width: 200px;
+  padding: 2.75rem;
+  border: 2px solid hsl(60deg 67% 44% / 64%);
+  border-radius: 20px;
+}
+
+.content p {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: var(--_gap);
+}
+
+.content span {
+  font-size: 1.3em;
+  letter-spacing: 1.3px;
+  line-height: 1.2;
+}
+
+.advert {
+  position: absolute; /* Absolute positioning */
+  z-index: 1; /* Layering control */
 }
 
 .advert a {
-  padding: 10px;
-  background-color:#8e793e;
-  border-radius: 10px;
-  color: #EAEAEA;
-  list-style: none;
-  font-family: "DM Serif Display", serif;
-  font-weight: 400;
-  font-style: normal;
+  padding: 10px; /* Padding inside links in the advert */
+  background-color: #8e793e; /* Background color for links */
+  border-radius: 10px; /* Rounded corners for links */
+  color: #EAEAEA; /* Text color for links */
+  list-style: none; /* Remove list style */
+  font-family: "DM Serif Display", serif; /* Font for links */
+  font-weight: 400; /* Font weight */
+  font-style: normal; /* Font style */
 }
 
-
 header {
-  position: relative;
-  top: 30px;
-  padding-left: 80px;
-  padding-right: 80px;
-  display: flex;
-  justify-content: space-between;
+  position: relative; /* Relative positioning for the header */
+  top: 30px; /* Space from the top */
+  padding-left: 80px; /* Padding on the left */
+  padding-right: 80px; /* Padding on the right */
+  display: flex; /* Flexbox layout for the header */
+  justify-content: space-between; /* Space between elements */
 }
 
 .intro {
-  display: grid;
-  place-items: center;
+  display: grid; /* Grid layout for the intro section */
+  place-items: center; /* Center items in the grid */
 }
 
 .upgrades,
 .reviews {
-  padding: 1rem;
-  text-align: center;
+  padding: 1rem; /* Padding inside the sections */
+  text-align: center; /* Center text alignment */
 }
 
 .upgrades h3,
 .reviews h3 {
-  margin-top: 0;
+  margin-top: 0; /* Remove top margin for section headings */
 }
 
 h2 {
-  padding-left: 100px;
-  font-family: "DM Serif Display", serif;
-  font-weight: 400;
-  font-style: normal;
+  padding-left: 100px; /* Padding on the left for headings */
+  font-family: "DM Serif Display", serif; /* Font for headings */
+  font-weight: 400; /* Font weight */
+  font-style: normal; /* Font style */
 }
 
-
-
 .upgrade-item {
-  display: inline-block;
-  width: 100px;
-  margin: 2%;
-  padding: 1rem;
-  background-color: #f4f4f4;
-  border-radius: 5px;
+  display: inline-block; /* Inline-block display for upgrade items */
+  width: 100px; /* Fixed width */
+  margin: 2%; /* Margin around the items */
+  padding: 1rem; /* Padding inside the items */
+  background-color: #f4f4f4; /* Background color for items */
+  border-radius: 5px; /* Rounded corners */
 }
 
 .upgrade-item img {
-  width: 100%;
-  max-width: 100px;
-  height: auto;
-  margin-bottom: 0.5rem;
-  border-radius: 10px;
-  opacity: 0.9;
-  transition: 0.5s;
+  width: 100%; /* Full width for images */
+  max-width: 100px; /* Maximum width for images */
+  height: auto; /* Auto height to maintain aspect ratio */
+  margin-bottom: 0.5rem; /* Margin below the image */
+  border-radius: 10px; /* Rounded corners for images */
+  opacity: 0.9; /* Slightly transparent images */
+  transition: 0.5s; /* Smooth transition for hover effects */
 }
 
 .upgrade-item:hover > img {
-  opacity: 1;
-  transform: scale(1.4);
-}
-.upgrades, .items {
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* Two equal-width sub-columns */
+  opacity: 1; /* Fully opaque on hover */
+  transform: scale(1.4); /* Scale up on hover */
 }
 
+.upgrades, 
+.items {
+  display: grid; /* Grid layout for sections */
+  grid-template-columns: repeat(2, 1fr); /* Two equal-width colum`ns */
+}
 
 footer {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  display: grid;
-  place-items: center;
-  position: relative;
-  top: 30px;
-  width: 99%;
-
-  border-radius: 10px;
+  background-color: #333; /* Dark background color */
+  color: #fff; /* White text color */
+  padding: 1rem; /* Padding inside the footer */
+  display: grid; /* Grid layout for the footer */
+  place-items: center; /* Center items in the grid */
+  position: relative; /* Relative positioning */
+  top: 30px; /* Space from the top */
+  width: 99%; /* Slightly reduced width to avoid edge overflow */
+  border-radius: 10px; /* Rounded corners */
 }
 
 form {
-  width: 90%;
+  width: 90%; /* Width of the form */
 }
 
 form-group {
-  background-color: rgba(0, 17, 17, 0.164);
-  margin-top: 20px;
+  background-color: rgba(0, 17, 17, 0.164); /* Background color for form groups */
+  margin-top: 20px; /* Space above the form group */
 }
 
 .account-reg {
-  padding-left: 100px;
+  padding-left: 100px; /* Padding on the left for account registration section */
 }
 
-#MainContent {
-  background-image: url('image-url');
-  background-size: cover;
-  background-position: center;
-}
-
-/* styles.css */
+/* Vehicle Display Styles */
 .veh-display {
-  /* Add styles for the entire vehicle display container */
-  /* For example: */
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* Two equal-width sub-columns */
-
+  display: grid; /* Grid layout for vehicle display */
+  grid-template-columns: repeat(2, 1fr); /* Two equal-width columns */
 }
 
 .vehicle-name {
-  margin-right: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* Two equal-width sub-columns */
+  margin-right: 20px; /* Space on the right of vehicle names */
+  display: grid; /* Grid layout for vehicle names */
+  grid-template-columns: repeat(2, 1fr); /* Two equal-width columns */
 }
 
 .vehicle-mp {
-  display: grid;
-  /* Two equal-width sub-columns */
+  display: grid; /* Grid layout for vehicle mileage and price */
+  padding-left: 10px; /* Padding on the left */
+  background-color: rgba(0, 17, 17, 0.164); /* Background color */
+  width: 110px; /* Width of the element */
 }
 
-
-
 .vehicle-image {
-  /* Add styles for the vehicle image */
-  /* For example: */
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #ccc;
+  max-width: 100%; /* Full width with maximum limit */
+  height: auto; /* Auto height to maintain aspect ratio */
+  border: 1px solid #ccc; /* Border around the image */
 }
 
 .vehicle-info {
-  /* Add styles for the vehicle information section */
-  /* For example: */
-  font-size: 16px;
-  color: #333;
-
+  font-size: 16px; /* Font size for vehicle information */
+  color: #333; /* Text color */
 }
 
 .vehicle-buttons {
-  width: 100px;
+  width: 100px; /* Fixed width for buttons */
 }
 
-.vehicle-buttons :hover {
-  background-color: #8e793e;
-}
-
-.vehicle-mp {
-  padding-left: 10px;
-  background-color: rgba(0, 17, 17, 0.164);
-  width: 110px;
+.vehicle-buttons:hover {
+  background-color: #8e793e; /* Background color on hover */
 }
 
 h5 {
-  background-color: #ffffff;
-  width: 60px;
+  background-color: #ffffff; /* Background color for h5 elements */
+  width: 60px; /* Fixed width */
 }
 
 .estimate {
-  margin-top: -50px;
-  padding-left: 220px;
-  color: #8e793e;
+  margin-top: -50px; /* Negative margin to move up */
+  padding-left: 220px; /* Padding on the left */
+  color: #8e793e; /* Text color */
 }
 
 .divine {
-  display: inline-block;
-  width: auto;
-  margin: 2%;
-  padding: 1rem;
-  border-radius: 5px;
+  display: inline-block; /* Inline-block display for divine items */
+  width: auto; /* Auto width */
+  margin: 2%; /* Margin around the items */
+  padding: 1rem; /* Padding inside the items */
+  border-radius: 5px; /* Rounded corners */
 }
 
-.divine li{
-  background: rgba( 255, 255, 255, 0.15 );
-  padding: 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
+.divine li {
+  background: rgba(255, 255, 255, 0.15); /* Semi-transparent background */
+  padding: 32px; /* Padding inside list items */
+  display: grid; /* Grid layout for list items */
+  place-items: center; /* Center items in the grid */
+  border-radius: 10px; /* Rounded corners */
 }
-.namePrice a{ 
-  padding: 0; 
-  color: #8e793e;
 
+.namePrice a { 
+  padding: 0; /* Remove padding for links */
+  color: #8e793e; /* Text color for links */
 }
-.namePrice h3{
-  padding: 0;
+
+.namePrice h3 {
+  padding: 0; /* Remove padding for h3 elements */
 }
-.namePrice span{
-  display: grid;
-  place-items: center;
+
+.namePrice span {
+  display: grid; /* Grid layout for span elements */
+  place-items: center; /* Center items in the grid */
 }
+
 .divine img {
-  width: 100%;
-  max-width: 150px;
-  height: 100px;  
-  margin-bottom: 0.5rem;
-  border-radius: 10px;
-  opacity: 0.9;
-  transition: 0.5s;
+  width: 100%; /* Full width for images */
+  max-width: 150px; /* Maximum width for images */
+  height: 100px; /* Fixed height */
+  margin-bottom: 0.5rem; /* Margin below the image */
+  border-radius: 10px; /* Rounded corners for images */
+  opacity: 0.9; /* Slightly transparent images */
+  transition: 0.5s; /* Smooth transition for hover effects */
 }
 
 .divine img:hover {
-  opacity: 1;
-  transform: scale(1.4);
+  opacity: 1; /* Fully opaque on hover */
+  transform: scale(1.4); /* Scale up on hover */
 }
 
 .vehicle-detail {
-  margin: 50px;
+  margin: 50px; /* Margin around vehicle details */
 }
 
 .management-label {
-  padding-top: 10px;
+  padding-top: 10px; /* Padding on the top for management labels */
 }
 
 /* Mobile View ***************/
-#menu {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  text-decoration: none;
-  padding: .5rem .75rem;
-  color: rgb(0, 0, 0, 0.3);
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-form {
-  padding-left: 100px;
-
-}
-
-fieldset{
-  background-color: rgba(169, 169, 169, 0.363);
-}
-
-.form-group {
-  margin: 6px;
-
+.nav {
+  
+  font-size: 2rem; /* Font size for menu button */
+  font-weight: 700; /* Bold font weight */
+  text-decoration: none; /* Remove underline */
+  padding: .5rem .75rem; /* Padding inside the menu button */
+  color: rgb(0, 0, 0, 0.3); /* Text color */
+  position: absolute; /* Absolute positioning */
+  top: 1rem; /* Distance from the top */
+  right: 1rem; /* Distance from the right */
 }
 
 
-fieldset {
-  display: flex;
-  flex-direction: column;
+
+.nav::before {
+  content: "≡"; /* Menu icon */
+
 }
 
-#menu::before {
-  content: "≡";
-}
+/* Mobile Navigation Styles */
 
-
-nav li {
-  display: none;
+nav a {
+ 
+  letter-spacing: 2px; /* Adjust spacing */
+  font-size: 12px; /* Font size */
+  text-align: center; /* Center text alignment */
+  padding: 10px; /* Padding inside links */
+  background-color: #231F20; /* Background color for links */
+  border-left: 2px solid #8e793e; /* Border color */
+  border-right: 2px solid #8e793e; /* Border color */
 }
 
 .show li {
-  display: block;
+  display: block; /* Show navigation items when menu is active */
+ 
 }
 
-#menu.show::before {
-  content: "❌";
+.nav.show::before {
+  content: "❌"; /* Close icon when menu is active */
 }
 
-/* Media Query for wider than mobile viewports. Breakpoint should be based upon the design and content and use em units to be relative to the user's font size versus fixed with pixels.*/
+
+/* Media Query for wider than mobile viewports */
 @media only screen and (min-width: 70em) {
-  nav {
-    display: flex;
-  }
 
-  nav li {
-    display: block;
-    /* change state in small view */
-    flex: 1 1 100%;
-  }
+
 
   nav a {
-    text-align: center;
+    text-align: center; /* Center text alignment */    
+    
+    background-color: #231F20; /* Background color for links */
+    border-left: 2px solid #8e793e; /* Border color */
+    border-right: 2px solid #8e793e; /* Border color */
   }
 
-  #menu {
-    display: none;
-  }  
+  
+  nav ul {
+    display: flex; /* Flexbox layout */
+    background-color: rgba(142, 121, 62, 0.20); /* Background color with transparency */
+    color: #8e793e; /* Text color */
+    width: 700px; /* Fixed width for the nawvigation list */
+    margin: 0 auto; /* Center the navigation list */
+    justify-content: space-between; /* Evenly distribute items */
+    background-color: #fff; /* White background */
+  
+  }
 }
