@@ -1,4 +1,4 @@
-/******* Change Box Model ***************/
+/******* Change Box Model **********/
 *,
 *:before,
 *:after {
@@ -73,7 +73,6 @@ textarea:required.valid {
   text-transform: uppercase; /* Uppercase text */
   font-weight: bold; /* Bold text */
 }
-
 #togglePassword {
   padding: 5px; /* Padding inside the password toggle button */
   margin-top: 5px; /* Space above the button */
