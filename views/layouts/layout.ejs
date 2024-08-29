@@ -1,20 +1,22 @@
 <%- include('../partials/head') %>
 
+    <body>
+        <header>
+            <%- include('../partials/header') %>
+           
+        </header>
+        <%- include('../partials/navigation') %>
+        <main>
+           
+            <div class="wrapper">
+                <%- messages() %>
+                    <%- body %>
+            </div>
 
 
-    <div class="wrapper">
+        </main>
 
-        <%- include('../partials/header') %>
-            <%- include('../partials/navigation') %>
-                <main>
-                    <%- messages() %>
-                        <%- body %>
+        </div>
 
-
-                </main>
-
-
-
-                <%- include('../partials/footer') %>
-
-    </div>
+        <%- include('../partials/footer') %>
+    </body>

@@ -1,0 +1,336 @@
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    font-size: 100%;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+header {
+    width: 100%;
+    display: flex;
+    /* Flexbox layout for the header */
+    justify-content: space-between;
+    /* Distributes space evenly between elements */
+    align-items: center;
+    /* Aligns items vertically (centered) */
+
+}
+
+/* Styling for the site name */
+.site-name a {
+    padding-left: 30px;
+    font-size: 24px;
+    /* Larger font size for site name */
+    font-weight: bold;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+    color: #8e793e;
+    /* Bold font weight */
+}
+
+#user-tools a {
+    padding-right: 30px;
+    color: #8e793e;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+    /* Link color */
+    text-decoration: none;
+    /* Remove underline from links */
+}
+
+#user-tools a:hover {
+    color: #333;
+}
+
+.site-header a:hover {
+    color: #333;
+}
+
+nav a {
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #8e793e;
+    /* Remove underline from links */
+}
+
+
+nav a:hover {
+    color: #8e793e;
+    background-color: #333;
+    /* Darker color on hover */
+    border: 2px solid hsla(0, 0%, 100%, 0.64);
+}
+
+/* Reset default list styles */
+ul {
+    list-style-type: none;
+    /* Remove bullet points */
+    padding: 0;
+    /* Remove default padding */
+    margin: 0;
+    /* Remove default margin */
+    display: flex;
+    /* Flexbox layout for the header */
+    justify-content: space-between;
+}
+
+#inv-display {
+    height: auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.vehicle-item {
+    display: grid;
+    place-items: center;
+    border-radius: 3px;
+    border: 2px solid hsl(60deg 67% 44% / 64%);
+}
+
+.vehicle-item li {
+    color: #8e793e;
+    display: grid;
+    place-items: center;
+}
+
+.vehicle-item a {
+    color: #8e793e;
+    display: grid;
+    place-items: center;
+}
+
+nav {
+    width: auto;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-left: 200px;
+    padding-right: 200px;
+    /* Uppercase text */
+}
+
+.car-card {
+
+    padding: 10px 15px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.car-details {
+    position: absolute;
+    /* Positions this div relative to .car-card */
+    left: 25%;
+    width: 120px;
+    background: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent black background */
+    color: white;
+    border-bottom-left-radius: 10px;
+    border: 2px solid hsl(60deg 67% 44% / 64%);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: -50px;
+
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #8e793e;
+    /* Red background */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    background-color: 0 2px 5px rgba(255, 255, 255, 0.3);
+    color: rgb(255, 230, 230);
+
+    /* Darker on hover */
+}
+
+.car-image img {
+    border-radius: 5px;
+}
+
+
+.sectioupgrade {
+    display: grid;
+    /* Grid layout for the intro section */
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+.upgrade-images {
+    display: grid;
+    /* Grid layout for sections */
+    grid-template-columns: repeat(2, 1fr);
+    /* Two equal-width colum`ns */
+    margin: 2%;
+    /* Margin around the items */
+    padding: 3px;
+    /* Padding inside the items */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+figcaption {
+    z-index: 1;
+    padding: 5px;
+    display: grid;
+    place-items: center;
+    border: 2px solid hsl(60deg 67% 44% / 64%);
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.upgrade-items figure {
+    border-radius: 5px;
+    /* Rounded corners */
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    border: 2px solid hsl(60deg 67% 44% / 64%);
+}
+
+hr {
+    display: none;
+}
+
+.ugrade-images img {
+
+    margin: 2%;
+    /* Margin around the items */
+    padding: 3px;
+    /* Padding inside the items */
+    opacity: 0.9;
+    /* Slightly transparent images */
+    transition: 0.5s;
+    /* Smooth transition for hover effects */
+}
+
+.upgrade-images img:hover {
+    opacity: 1;
+    /* Fully opaque on hover */
+    transform: scale(1.4);
+    /* Scale up on hover */
+}
+
+img {
+    border-radius: 3px;
+}
+
+footer {
+    background-color: #333;
+    /* Dark background color */
+    color: #fff;
+    /* White text color */
+    display: grid;
+    /* Grid layout for the footer */
+    place-items: center;
+    /* Center items in the grid */
+    position: relative;
+    /* Relative positioning */
+    padding: 1rem;
+    /* Padding inside the footer */
+}
+
+
+/* Hover effect for list items */
+nav li :hover {
+    background: 0 2px 5px rgba(255, 255, 255, 0.3);
+    /* Change background on hover */
+    padding: auto;
+    border-radius: 5px;
+    color: #fff;
+
+}
+
+nav li {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+
+.wrapper {
+    margin: 50px;
+}
+
+
+
+
+
+.vehicle-mp {
+    background-color: rgba(0, 17, 17, 0.164);
+    /* Background color */
+    width: 110px;
+    /* Width of the element */
+}
+
+@media (max-width: 768px) {
+    .car-image img {
+        max-width: 100%;
+        /* Ensures the image does not exceed the width of its container */
+        height: auto;
+        /* Maintains the aspect ratio */
+        border-radius: 20px;
+    }
+
+    nav {
+        display: grid;
+        place-items: center;
+    }
+
+    ul {
+        display: inline-block;
+    }
+
+    .car-card {
+        display: inline-block;
+        padding-left: 0;
+    }
+
+    .car-details {
+        position: relative;
+        margin: 0;
+    }
+
+    .sectioupgrade {
+        display: inline-block;
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-size: medium;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+    .car-details {
+        display: inline-block;
+        margin: auto;
+        padding: auto;
+    }
+
+    #inv-display {
+        height: auto;
+        display: inline-block;
+        margin: auto;
+        padding: auto;
+    }
+}

@@ -112,7 +112,7 @@ VALUES
     ('Monster', 'Truck', '1995', 'Most trucks are for working, this one is for fun. This beast comes with 60 inch tires giving you traction needed to jump and roll in the mud.', 
     '/images/vehicles/monster-truck.jpg', '/images/vehicles/monster-truck-tn.jpg', 150000, 3998, 'Purple', 1),
     ('Cadillac', 'Escalade', '2019', 'This stylish car is great for any occasion from going to the beach to meeting the president. The luxurious inside makes this car a home away from home.',
-     '/images/vehicles/escalade.jpg', '/images/escalade-tn.jpg', 75195, 41958, 'Black', 4),
+     '/images/vehicles/escalade.jpg', '/images/vehicles/escalade-tn.jpg', 75195, 41958, 'Black', 4),
     ('GM', 'Hummer', '2016', 'Do you have 6 kids and like to go offroading? The Hummer gives you the small interiors with an engine to get you out of any muddy or rocky situation.', 
     '/images/vehicles/hummer.jpg', '/images/vehicles/hummer-tn.jpg', 58800, 56564, 'Yellow', 4),
     ('Mechanic', 'Special', '1964', 'Not sure where this car came from. However, with a little TLC it will run as good as new.', 
