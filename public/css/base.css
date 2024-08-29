@@ -281,6 +281,9 @@ nav li {
     /* Width of the element */
 }
 
+.vehicle-detail-left{
+padding: 20px;
+}
 @media (max-width: 768px) {
     .car-image img {
         max-width: 100%;
