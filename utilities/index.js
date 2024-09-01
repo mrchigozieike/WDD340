@@ -4,13 +4,18 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
 
+
+
+
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
-  let data = await invModel.getClassifications()
+
+  let data = await invModel.getClassifications()  
   let list = "<ul>"
-  list += '<li><a href="/" title="Home page">Home</a></li>'
+  list += '<li><a href="/" title="Home page" class="active">Home</a></li>'
   data.rows.forEach((row) => {
     list += "<li>"
     list +=

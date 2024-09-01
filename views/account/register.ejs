@@ -19,7 +19,6 @@
   <form id="registerForm" action="/account/register" method="post">
       <fieldset>
           <legend></legend>
-          <h2>Register</h2>
           <label class="account-label">First Name<input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>"></label>
           <label class="account-label">Last Name<input type="text" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>"></label>
           <label class="account-label">Email address<input type="email" name="account_email" id="accountEmail" required placeholder="Enter a valid email address" value="<%= locals.account_email %>"></label>
