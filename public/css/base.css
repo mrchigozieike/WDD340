@@ -48,6 +48,7 @@ header {
     color: #333;
 }
 
+
 nav a {
     font-weight: 100;
     font-family: 'Roboto', sans-serif;
@@ -316,10 +317,35 @@ button:hover{background:#78788c;color:#fff}
         /* Maintains the aspect ratio */
         border-radius: 20px;
     }
-
+    #menu::before {
+        content: "≡";
+        font-weight: 700;
+        transition: 0.5s;
+        font-size: 40px;
+        position: absolute;
+        z-index: 1;
+        text-align: center;
+        left: 50%; /* Moves to 50% across from the left */
+    }
+    
+    nav ul li {
+        display: none;
+    }
+    .show li {
+        display: block;
+    }
+    
+    #menu.show::before {
+        content: "X";
+        color: red;
+    }
+        
     nav {
         display: grid;
         place-items: center;
+
+
+        
     }
 
     ul {
