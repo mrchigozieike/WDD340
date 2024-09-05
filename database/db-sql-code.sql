@@ -142,3 +142,6 @@ UPDATE public.inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/vehicles/'),
     inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/vehicles/');
 
+ALTER TABLE public.classification
+ADD COLUMN status character varying(20) NOT NULL DEFAULT 'Unapproved',
+ADD CONSTRAINT status_check CHECK (status IN ('Approved', 'Unapproved'));

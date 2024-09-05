@@ -15,7 +15,7 @@ async function updateClassificationStatus(classification_id, status) {
 // Update the inventory status
 async function updateInventoryStatus(inv_id, status) {
   try {
-    const query = 'UPDATE public.inventory SET is_approved = $1 WHERE inv_id = $2 RETURNING *';
+    const query = 'UPDATE public.inventory SET status = $1 WHERE inv_id = $2 RETURNING *';
     const result = await pool.query(query, [status, inv_id]);
     console.log(result)
     return result.rows[0];
@@ -28,7 +28,7 @@ async function updateInventoryStatus(inv_id, status) {
 
 // Method to get unapproved classifications
 async function getUnapprovedClassifications() {
-  const query = 'SELECT * FROM public.classification WHERE approved = FALSE ORDER BY classification_name';
+  const query = 'SELECT * FROM public.classification WHERE status = Unapproved ORDER BY classification_name';
   try {
     const result = await pool.query(query);
     return result.rows;
@@ -40,7 +40,7 @@ async function getUnapprovedClassifications() {
 
 // Method to get unapproved inventory items
 async function getUnapprovedInventories() {
-  const query = 'SELECT * FROM public.inventory WHERE is_approved = FALSE ORDER BY inv_make, inv_model';
+  const query = 'SELECT * FROM public.inventory WHERE status = Unapproved  ORDER BY inv_make, inv_model';
   try {
     const result = await pool.query(query);
     return result.rows;

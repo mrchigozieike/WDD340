@@ -298,10 +298,18 @@ button{float:right;padding:8px 12px;margin:8px 0 0;font-family:'Montserrat',sans
 button:hover{background:#78788c;color:#fff}
 
    
-
+.namePrice span{
+    color: whitesmoke;
+    background-color:#8e793e;
+    padding: 5px;
+    float:right;
+}
 
 @media (max-width: 768px) {
     .car-image img {
+
+
+        
         max-width: 100%;
         /* Ensures the image does not exceed the width of its container */
         height: auto;

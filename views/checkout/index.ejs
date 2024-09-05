@@ -1,0 +1,89 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sleep Outside | Checkout</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/checkout.js"></script>
+</head>
+
+<body>
+  <header class="divider">
+    <div class="logo">
+      <img src="images/noun_Tent_2517.svg" alt="tent image for logo" />
+
+      <a href="index.html">
+        Sleep
+        <span class="highlight">Outside</span>
+      </a>
+    </div>
+  </header>
+  <main class="divider">
+    <h1>Review & Place Your Order</h1>
+    <section class="Checkout-form">
+      <form name="Checkout">
+        <fieldset>
+          <legend>Shipping</legend>
+          <div class="Checkout__name">
+            <label for="fname">First Name</label>
+            <input name="fname" required>
+            <label for="lname">First Name</label>
+            <input name="lname" required>
+          </div>
+          <div class="checkout__address">
+            <label for="street">Street</label>
+            <input name="street" required>
+            <label for="city">City</label>
+            <input name="city" required>
+            <label for="State"></label>
+            <input name="State" required>
+            <label for="Zip">Zip code</label>
+            <input name="zip" required>
+          </div>
+
+        </fieldset>
+        <fieldset>
+          <legend>Payment</legend>
+          <label for="cardNumber">Card number</label>
+          <input name="cardNumber" required>
+          <label for="expiration">Expiration</label>
+          <input name="expiration" required>
+          <label for="code">Security Code</label>
+          <input name="code" required>
+        </fieldset>
+        <fieldset class="checkout-summary">Checkout Summary</fieldset>
+        <legend>Order Details <Summary></Summary>
+        </legend>
+        <ul>
+          <li for="cartTotal">Item</li>
+          <p name="cartTotal" id="cartTotal"></p>
+          <li>
+            <label for="Shipping">Shipping Estimate</label>
+          </li>
+          <p id="Shipping"></p>
+          <li>
+            <label for="tax">Tax</label>
+            <p id="tax"></p>
+          </li>
+          <li>
+            <label for="orderTotal">Order Total</label>
+            <p id="orderTotal"></p>
+          </li>
+          <button id="checkoutSubmit" type="submit">Checkout</button>
+        </ul>
+      </form>
+    </section>
+
+  </main>
+
+
+  <footer>&copy;NOT a real business</footer>
+</body>
+
+</html>
