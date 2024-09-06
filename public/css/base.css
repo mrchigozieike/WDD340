@@ -6,7 +6,9 @@ body {
     font-family: 'Roboto', sans-serif;
 
 }
-
+.menu{
+    display: none;
+}
 header {
     width: 100%;
     display: flex;
@@ -93,6 +95,7 @@ ul {
     place-items: center;
     border-radius: 3px;
     border: 2px solid hsl(60deg 67% 44% / 64%);
+    gap: auto;
 }
 
 .vehicle-item li {
@@ -184,7 +187,7 @@ nav {
     /* Padding inside the items */
     border-radius: 5px;
     /* Rounded corners */
- 
+
 }
 
 figcaption {
@@ -211,9 +214,11 @@ hr {
     display: none;
 }
 
-h2{
-    text-decoration: none;   /* Remove underline from links */
+h2 {
+    text-decoration: none;
+    /* Remove underline from links */
 }
+
 .ugrade-images img {
 
     margin: 2%;
@@ -285,69 +290,156 @@ nav li {
     /* Width of the element */
 }
 
-.vehicle-detail-left{
-padding: 20px;
+.vehicle-detail-left {
+    padding: 20px;
 }
 
 
-.form{width:340px;height:440px;background:#e6e6e6;border-radius:8px;box-shadow:0 0 40px -10px #000;margin:calc(50vh - 220px) auto;padding:20px 30px;max-width:calc(100vw - 40px);box-sizing:border-box;font-family:'Montserrat',sans-serif;position:relative}
+.form {
+    width: 340px;
+    height: 440px;
+    background: #e6e6e6;
+    border-radius: 8px;
+    box-shadow: 0 0 40px -10px #000;
+    margin: calc(50vh - 220px) auto;
+    padding: 20px 30px;
+    max-width: calc(100vw - 40px);
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    position: relative
+}
 
 
-input{width:100%;padding:10px;box-sizing:border-box;background:none;outline:none;resize:none;border:0;font-family:'Montserrat',sans-serif;transition:all .3s;border-bottom:2px solid #bebed2}
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    resize: none;
+    border: 0;
+    font-family: 'Montserrat', sans-serif;
+    transition: all .3s;
+    border-bottom: 2px solid #bebed2
+}
 
-input:focus{border-bottom:2px solid #78788c}
-p:before{content:attr(type);display:block;margin:28px 0 0;font-size:14px;color:#5a5a5a}
+input:focus {
+    border-bottom: 2px solid #78788c
+}
 
-button{float:right;padding:8px 12px;margin:8px 0 0;font-family:'Montserrat',sans-serif;border:2px solid #78788c;background:0;color:#5a5a6e;cursor:pointer;transition:all .3s}
-button:hover{background:#78788c;color:#fff}
+p:before {
+    content: attr(type);
+    display: block;
+    margin: 28px 0 0;
+    font-size: 14px;
+    color: #5a5a5a
+}
 
-   
-.namePrice span{
-    color:#333;    
+button {
+    float: right;
+    padding: 8px 12px;
+    margin: 8px 0 0;
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid #78788c;
+    background: 0;
+    color: #5a5a6e;
+    cursor: pointer;
+    transition: all .3s
+}
+
+button:hover {
+    background: #78788c;
+    color: #fff
+}
+
+
+.namePrice span {
+    color: #333;
     padding: 5px;
     border: 2px solid hsla(0, 0%, 100%, 0.64);
 }
 
 @media (max-width: 768px) {
     .car-image img {
-
-
-        
         max-width: 100%;
         /* Ensures the image does not exceed the width of its container */
         height: auto;
         /* Maintains the aspect ratio */
         border-radius: 20px;
     }
-    #menu::before {
-        content: "≡";
-        font-weight: 700;
-        transition: 0.5s;
-        font-size: 40px;
-        position: absolute;
-        z-index: 1;
-        text-align: center;
-        left: 50%; /* Moves to 50% across from the left */
+
+    .menu {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        padding: 0;
     }
-    
+
+    .line {
+        fill: none;
+        stroke: black;
+        stroke-width: 6;
+        transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+            stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line1 {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+    }
+
+    .line2 {
+        stroke-dasharray: 60 60;
+        stroke-width: 6;
+    }
+
+    .line3 {
+        stroke-dasharray: 60 207;
+        stroke-width: 6;
+    }
+
+    .opened .line1 {
+        stroke-dasharray: 90 207;
+        stroke-dashoffset: -134;
+        stroke-width: 6;
+    }
+
+    .opened .line2 {
+        stroke-dasharray: 1 60;
+        stroke-dashoffset: -30;
+        stroke-width: 6;
+    }
+
+    .opened .line3 {
+        stroke-dasharray: 90 207;
+        stroke-dashoffset: -134;
+        stroke-width: 6;
+    }
+
+    .menu::before {          
+        right: 80%;     /* Moves to 10% across from the left */
+    }
+
     nav ul li {
         display: none;
     }
+
     .show li {
         display: block;
     }
-    
-    #menu.show::before {
-        content: "X";
+
+    .menu.show::before {
+        
         color: red;
     }
-        
+
     nav {
         display: grid;
         place-items: center;
 
 
-        
+
     }
 
     ul {
@@ -373,6 +465,44 @@ button:hover{background:#78788c;color:#fff}
     h3 {
         font-size: medium;
     }
+}
+
+/* Vehicle Display Styles */
+.veh-display {
+    display: grid;    /* Grid layout for vehicle display */
+    grid-template-columns: repeat(2, 1fr);    /* Two equal-width columns */
+}
+
+.vehicle-name {
+    margin-right: 20px;    /* Space on the right of vehicle names */
+    display: grid;    /* Grid layout for vehicle names */
+    grid-template-columns: repeat(2, 1fr);    /* Two equal-width columns */
+}
+
+.vehicle-mp {
+    display: inline-block;    /* Grid layout for vehicle mileage and price */
+
+}
+
+.vehicle-image {
+    max-width: 100%;    /* Full width with maximum limit */
+    height: auto;    /* Auto height to maintain aspect ratio */
+    border: 1px solid #ccc;    /* Border around the image */
+}
+
+
+.namePrice a {
+    padding: 0;    /* Remove padding for links */
+    color: #8e793e;    /* Text color for links */
+}
+
+.namePrice h3 {
+    padding: 0;    /* Remove padding for h3 elements */
+}
+
+.namePrice span {
+    display: grid;    /* Grid layout for span elements */
+    place-items: center;    /* Center items in the grid */
 }
 
 @media (min-width: 500px) and (max-width: 768px) {
