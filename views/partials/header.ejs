@@ -4,12 +4,36 @@
     <a href="/" title="Return to home page">CSE Motors</a>
   </span>
 
+
   <div id="user-tools">
+    <!-- Search Bar -->
+    <div class="site-search">
+      <div class="search" action="">
+        <input type="search" autofocus required>
+        <i class="fa fa-search"></i>
+        <button class="clear-button" onclick="clearInput()">Clear</a>
+      </div>
+    </div>
+
+
+    <!-- User Tools -->
     <% if (user) { %>
-      <p>Welcome, <%= user.name %>! |  <a href="/account/logout">Logout</a></p>
-    <% } else { %>
-      <a title="Click to log in" href="/account/login">My Account</a>
-    <% } %>
+      <p>Welcome, <%= user.name %>! | <a href="/account/logout"><i class="fa-regular fa-user"></i>Logout</a></p>
+      <% } else { %>
+        <a title="Click to log in" href="/account/login"><i class="fa-regular fa-user"></i>My Account</a>
+        <% } %>
+
+          <a href="https://www.example.com/cart" title="Go to Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+
   </div>
-  
+
+  <script>
+    const clearInput = () => {
+      const input = document.getElementsByTagName("input")[0];
+      input.value = "";
+    }
+  </script>
+
 </header>

@@ -4,11 +4,13 @@ body {
     font-size: 100%;
     font-weight: 100;
     font-family: 'Roboto', sans-serif;
-
+    background-color: whitesmoke;
 }
-.menu{
+
+.menu {
     display: none;
 }
+
 header {
     width: 100%;
     display: flex;
@@ -32,8 +34,108 @@ header {
     /* Bold font weight */
 }
 
+.search {    
+    transform: translate(-50%, -50%);
+    transition: all 1s;
+    width: 50px;
+    height: 30px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 4px solid white;
+  
+}
+
+.search input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 33px;
+}
+
+.fa {
+    box-sizing: border-box;
+    padding: 8px;
+    width: 30px;
+    height: 33px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 4px;
+    color: #8e793e;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+.search:focus-within,
+.search:hover,
+.search:valid {
+    width: 200px;
+    cursor: pointer;
+}
+
+.search:hover input,
+.search:focus-within input,
+.search:valid input {
+    width: 100%;
+}
+
+
+.search:hover .fa,
+.search:focus-within .fa,
+.search:valid .fa {
+  background: #8e793e;
+  color: white;
+}
+
+.clear-button {
+  display: none;
+  position: absolute;
+  top: 70px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  color: white;
+  padding: 4px;
+  min-height: max-content;
+  background: rgba(0, 0, 0, 0.1);
+  outline: 0;
+  border: 1px solid #303030;
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  padding-left: 10px;
+}
+.shopping-cart{
+    padding-right: 20px;
+    box-sizing: border-box;
+    
+    width: 30px;
+    height: 33px;    
+    border-radius: 4px;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+.search:valid button {
+  display: block;
+}
+
+
+#user-tools {
+    display: flex;
+    margin-top: 30px;
+    padding-bottom: 0;
+    min-height: 30px;
+}
+
 #user-tools a {
-    padding-right: 30px;
+    padding-right: 20px;
     color: #8e793e;
     font-weight: 100;
     font-family: 'Roboto', sans-serif;
@@ -295,19 +397,6 @@ nav li {
 }
 
 
-.form {
-    width: 340px;
-    height: 440px;
-    background: #e6e6e6;
-    border-radius: 8px;
-    box-shadow: 0 0 40px -10px #000;
-    margin: calc(50vh - 220px) auto;
-    padding: 20px 30px;
-    max-width: calc(100vw - 40px);
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    position: relative
-}
 
 
 input {
@@ -417,8 +506,9 @@ button:hover {
         stroke-width: 6;
     }
 
-    .menu::before {          
-        right: 80%;     /* Moves to 10% across from the left */
+    .menu::before {
+        right: 80%;
+        /* Moves to 10% across from the left */
     }
 
     nav ul li {
@@ -430,7 +520,7 @@ button:hover {
     }
 
     .menu.show::before {
-        
+
         color: red;
     }
 
@@ -469,40 +559,54 @@ button:hover {
 
 /* Vehicle Display Styles */
 .veh-display {
-    display: grid;    /* Grid layout for vehicle display */
-    grid-template-columns: repeat(2, 1fr);    /* Two equal-width columns */
+    display: grid;
+    /* Grid layout for vehicle display */
+    grid-template-columns: repeat(2, 1fr);
+    /* Two equal-width columns */
 }
 
 .vehicle-name {
-    margin-right: 20px;    /* Space on the right of vehicle names */
-    display: grid;    /* Grid layout for vehicle names */
-    grid-template-columns: repeat(2, 1fr);    /* Two equal-width columns */
+    margin-right: 20px;
+    /* Space on the right of vehicle names */
+    display: grid;
+    /* Grid layout for vehicle names */
+    grid-template-columns: repeat(2, 1fr);
+    /* Two equal-width columns */
 }
 
 .vehicle-mp {
-    display: inline-block;    /* Grid layout for vehicle mileage and price */
+    display: inline-block;
+    /* Grid layout for vehicle mileage and price */
 
 }
 
 .vehicle-image {
-    max-width: 100%;    /* Full width with maximum limit */
-    height: auto;    /* Auto height to maintain aspect ratio */
-    border: 1px solid #ccc;    /* Border around the image */
+    max-width: 100%;
+    /* Full width with maximum limit */
+    height: auto;
+    /* Auto height to maintain aspect ratio */
+    border: 1px solid #ccc;
+    /* Border around the image */
 }
 
 
 .namePrice a {
-    padding: 0;    /* Remove padding for links */
-    color: #8e793e;    /* Text color for links */
+    padding: 0;
+    /* Remove padding for links */
+    color: #8e793e;
+    /* Text color for links */
 }
 
 .namePrice h3 {
-    padding: 0;    /* Remove padding for h3 elements */
+    padding: 0;
+    /* Remove padding for h3 elements */
 }
 
 .namePrice span {
-    display: grid;    /* Grid layout for span elements */
-    place-items: center;    /* Center items in the grid */
+    display: grid;
+    /* Grid layout for span elements */
+    place-items: center;
+    /* Center items in the grid */
 }
 
 @media (min-width: 500px) and (max-width: 768px) {
